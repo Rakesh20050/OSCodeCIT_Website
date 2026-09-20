@@ -4,6 +4,7 @@ import { ArrowRight, Sparkles, Code, Cpu } from "lucide-react";
 import Container from "../common/Container";
 import SectionHeading from "../common/SectionHeading";
 import ProjectCard from "../projects/ProjectCard";
+import AlbumFrame from "../common/AlbumFrame";
 import { projects } from "../../data/projects";
 
 const Projects = () => {
@@ -31,7 +32,7 @@ const Projects = () => {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute left-[10%] top-[20%] h-72 w-72 rounded-full bg-cyan-500/10 dark:bg-cyan-500/15 blur-[120px]"
+          className="absolute left-[10%] top-[20%] h-72 w-72 rounded-full bg-red-500/10 dark:bg-red-500/15 blur-[120px]"
         />
         <motion.div
           animate={{
@@ -44,21 +45,21 @@ const Projects = () => {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute right-[10%] bottom-[15%] h-80 w-80 rounded-full bg-blue-500/10 dark:bg-indigo-500/15 blur-[140px]"
+          className="absolute right-[10%] bottom-[15%] h-80 w-80 rounded-full bg-red-500/10 dark:bg-red-500/15 blur-[140px]"
         />
 
         {/* Floating Code/Tech Icon Watermarks */}
         <motion.div
           animate={{ y: [-15, 15, -15], rotate: [0, 10, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-[5%] top-[40%] text-cyan-500/10 dark:text-cyan-400/10 pointer-events-none hidden sm:block"
+          className="absolute left-[5%] top-[40%] text-red-500/10 dark:text-red-400/10 pointer-events-none hidden sm:block"
         >
           <Code size={64} />
         </motion.div>
         <motion.div
           animate={{ y: [15, -15, 15], rotate: [0, -10, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute right-[5%] top-[30%] text-blue-500/10 dark:text-indigo-400/10 pointer-events-none hidden sm:block"
+          className="absolute right-[5%] top-[30%] text-red-500/10 dark:text-red-400/10 pointer-events-none hidden sm:block"
         >
           <Cpu size={64} />
         </motion.div>
@@ -79,41 +80,41 @@ const Projects = () => {
           />
         </motion.div>
 
-        {/* Live Staggered Grid Animation for Cards */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.18,
-              },
-            },
-          }}
-          className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 items-stretch"
+        <AlbumFrame
+          className="mt-14"
+          eyebrow="Featured Projects"
+          title="Build Archive"
+          description="A complete album of selected student-led builds. Hover for 3D depth and click any project to flip it for details."
         >
-          {featuredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              variants={{
-                hidden: { opacity: 0, y: 35, scale: 0.92 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
-                },
-              }}
-              whileHover={{ y: -6 }}
-              className="flex"
-            >
-              <ProjectCard project={project} />
-            </motion.div>
-          ))}
-        </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.08 }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.14 } },
+            }}
+            className="grid grid-cols-1 items-stretch gap-8 lg:gap-9 md:grid-cols-2 xl:grid-cols-3"
+          >
+            {featuredProjects.map((project) => (
+              <motion.div
+                key={project.id}
+                variants={{
+                  hidden: { opacity: 0, y: 28, scale: 0.97 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+                  },
+                }}
+                className="min-w-0"
+              >
+                <ProjectCard project={project} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </AlbumFrame>
 
         {/* Animated Action Button */}
         <motion.div
@@ -125,9 +126,9 @@ const Projects = () => {
         >
           <Link
             to="/projects"
-            className="group relative inline-flex items-center gap-2.5 rounded-full border border-cyan-500/40 bg-cyan-500/10 px-8 py-3.5 text-sm font-bold text-cyan-700 dark:text-[#00D2FF] transition-all duration-300 hover:scale-105 hover:bg-cyan-500 hover:text-slate-950 dark:hover:text-black hover:shadow-[0_0_30px_rgba(0,168,255,0.5)] active:scale-95"
+            className="group relative inline-flex items-center gap-2.5 rounded-full border border-red-500/40 bg-red-500/10 px-8 py-3.5 text-sm font-bold text-red-700 dark:text-[#FF4D4D] transition-all duration-300 hover:scale-105 hover:bg-red-500 hover:text-slate-950 dark:hover:text-black hover:shadow-[0_0_30px_rgba(0,168,255,0.5)] active:scale-95"
           >
-            <Sparkles size={16} className="text-cyan-500 dark:text-cyan-300 group-hover:rotate-12 transition-transform" />
+            <Sparkles size={16} className="text-red-500 dark:text-red-300 group-hover:rotate-12 transition-transform" />
             <span>View All Projects</span>
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>

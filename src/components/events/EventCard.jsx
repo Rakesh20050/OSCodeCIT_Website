@@ -1,134 +1,525 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
-  ChevronLeft,
-  ChevronRight,
-  Calendar,
+  CalendarDays,
   MapPin,
-  X,
-  ArrowUpRight,
-  Award,
+  RotateCw,
+  ArrowRight,
   Users,
   BookOpen,
+  Award,
 } from "lucide-react";
+import { motion } from "framer-motion";
+import FlipCard from "../common/FlipCard";
 
-const EventCard = ({ event, onCardClick }) => {
-  const [currentImage, setCurrentImage] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
+const shorten = (text = "", max = 170) =>
+  text.length > max ? `${text.slice(0, max).trim()}…` : text;
 
-  const nextImage = (e) => {
-    e?.stopPropagation();
-    setCurrentImage((prev) => (prev + 1) % event.images.length);
-  };
+export default function EventCard({ event, onCardClick }) {
+  const image = event.images?.[0] || event.image;
 
-  const previousImage = (e) => {
-    e?.stopPropagation();
-    setCurrentImage(
-      (prev) => (prev - 1 + event.images.length) % event.images.length,
-    );
-  };
-
-  const hasMultipleImages = event.images && event.images.length > 1;
-
-  const handleClick = () => {
-    if (onCardClick) {
-      onCardClick();
-    } else {
-      setIsOpen(true);
-    }
-  };
-
-  return (
-    <>
-      {/* Clickable Event Card */}
+  const front = (
+    <motion.article
+      className="
+        future-card
+        event-card
+        group
+        relative
+        overflow-hidden
+        rounded-3xl
+        border
+        border-white/10
+        bg-[#0a0a0b]
+        transition-all
+        duration-500
+        hover:border-cyan-200/35
+        hover:shadow-[0_20px_60px_rgba(103,232,249,.10)]
+      "
+    >
+      {/* ================= SOFT HOVER GLOW ================= */}
       <div
-        onClick={handleClick}
-        className="group relative w-[340px] sm:w-[380px] shrink-0 min-w-0 max-w-full flex flex-col justify-between rounded-2xl sm:rounded-3xl border dark:border-white/10 border-slate-200 dark:bg-[#0a1124]/80 bg-white backdrop-blur-xl overflow-hidden transition-all duration-300 hover:border-[#00A8FF]/60 hover:shadow-[0_12px_35px_-8px_rgba(0,168,255,0.25)] hover:-translate-y-1.5 cursor-pointer shadow-sm mx-3"
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          z-0
+          rounded-3xl
+          bg-gradient-to-br
+          from-cyan-300/8
+          via-blue-300/4
+          to-transparent
+          opacity-0
+          transition-opacity
+          duration-700
+          group-hover:opacity-100
+        "
+      />
+
+      {/* ================= EVENT IMAGE ================= */}
+      <div
+        className="
+          relative
+          z-10
+          mx-4
+          mt-4
+          h-64
+          overflow-hidden
+          rounded-2xl
+          border
+          border-white/10
+          bg-black
+          sm:h-72
+          md:h-80
+          lg:h-[350px]
+          transition-all
+          duration-700
+          group-hover:border-cyan-200/35
+          group-hover:shadow-[0_12px_40px_rgba(103,232,249,.10)]
+        "
       >
-        {/* Card Top Photo */}
-        <div className="relative h-48 sm:h-56 w-full overflow-hidden bg-slate-900 shrink-0">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={currentImage}
-              src={event.images[currentImage]}
-              alt={event.title}
-              className="h-full w-full object-cover select-none"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            />
-          </AnimatePresence>
+        {/* Image */}
+        <img
+          src={image}
+          alt={event.title}
+          onError={(e) => {
+            e.currentTarget.src = "/images/logos/logo.svg";
+          }}
+          className="
+            absolute
+            inset-0
+            h-full
+            w-full
+            object-cover
+            transition-transform
+            duration-[1200ms]
+            ease-out
+            group-hover:scale-[1.06]
+          "
+        />
 
-          {/* Date Badge */}
-          <div className="absolute top-3 left-3 rounded-full bg-black/80 px-3 py-1 text-[11px] sm:text-xs font-semibold !text-cyan-300 border border-white/10 backdrop-blur-md flex items-center gap-1.5 shadow-md">
-            <Calendar size={12} className="!text-cyan-400" />
-            <span>{event.date}</span>
-          </div>
+        {/* Cinematic overlay */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            bg-gradient-to-t
+            from-black/65
+            via-black/10
+            to-transparent
+          "
+        />
 
-          {/* Nav Arrows */}
-          {hasMultipleImages && (
-            <>
-              <button
-                onClick={previousImage}
-                aria-label="Previous Slide"
-                className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-1.5 text-white backdrop-blur-sm hover:bg-black/90 transition active:scale-95"
-              >
-                <ChevronLeft size={16} />
-              </button>
-              <button
-                onClick={nextImage}
-                aria-label="Next Slide"
-                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-1.5 text-white backdrop-blur-sm hover:bg-black/90 transition active:scale-95"
-              >
-                <ChevronRight size={16} />
-              </button>
-            </>
-          )}
-        </div>
+        {/* Light hover color */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            bg-gradient-to-br
+            from-cyan-200/0
+            via-blue-200/0
+            to-purple-200/0
+            opacity-0
+            transition-all
+            duration-700
+            group-hover:from-cyan-200/8
+            group-hover:via-blue-200/6
+            group-hover:to-purple-200/10
+            group-hover:opacity-100
+          "
+        />
 
-        {/* Card Body */}
-        <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between min-w-0">
-          <div>
-            <h2 className="text-lg sm:text-xl font-bold dark:text-white text-slate-900 tracking-tight line-clamp-2 group-hover:text-cyan-600 dark:group-hover:text-[#00D2FF] transition">
-              {event.title}
-            </h2>
-            <p className="mt-2.5 text-xs sm:text-sm dark:text-slate-300 text-slate-600 leading-relaxed line-clamp-3">
-              {event.about || event.description}
-            </p>
-          </div>
+        {/* Soft moving light */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            -left-1/2
+            top-0
+            h-full
+            w-[25%]
+            rotate-[18deg]
+            bg-gradient-to-r
+            from-transparent
+            via-white/12
+            to-transparent
+            blur-2xl
+            opacity-0
+            transition-all
+            duration-[1400ms]
+            group-hover:left-[120%]
+            group-hover:opacity-100
+          "
+        />
 
-          <div className="mt-5 pt-3.5 border-t dark:border-white/10 border-slate-200 flex items-center justify-between gap-2 text-xs dark:text-slate-400 text-slate-500 min-w-0">
-            <div className="flex items-center gap-1.5 truncate">
-              <MapPin size={14} className="text-cyan-600 dark:text-[#00D2FF] shrink-0" />
-              <span className="truncate">{event.location}</span>
-            </div>
-            <span className="shrink-0 flex items-center gap-1 font-semibold text-cyan-600 dark:text-[#00D2FF] group-hover:underline">
-              Details <ArrowUpRight size={13} />
-            </span>
-          </div>
+        {/* ================= EVENT TYPE ================= */}
+        <span
+          className="
+            event-type
+            transition-all
+            duration-500
+            group-hover:border-cyan-200/40
+            group-hover:bg-cyan-100/10
+            group-hover:text-cyan-100
+          "
+        >
+          Event Album
+        </span>
+
+        {/* ================= DATE ================= */}
+        <span
+          className="
+            event-date
+            transition-all
+            duration-500
+            group-hover:border-blue-200/35
+            group-hover:bg-blue-100/10
+            group-hover:text-blue-50
+          "
+        >
+          <CalendarDays size={13} />
+          {event.date}
+        </span>
+
+        {/* ================= GALLERY BUTTON ================= */}
+        <button
+          className="
+            image-arrow
+            transition-all
+            duration-500
+            group-hover:scale-110
+            group-hover:bg-cyan-100/90
+            group-hover:text-slate-900
+            group-hover:border-cyan-100
+            group-hover:shadow-[0_0_22px_rgba(103,232,249,.22)]
+          "
+          onClick={(e) => e.stopPropagation()}
+          aria-label="Event gallery"
+        >
+          →
+        </button>
+
+        {/* ================= EXPLORE LABEL ================= */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            bottom-4
+            left-1/2
+            -translate-x-1/2
+            rounded-full
+            border
+            border-white/15
+            bg-black/35
+            px-5
+            py-2
+            text-[10px]
+            font-semibold
+            uppercase
+            tracking-[0.25em]
+            text-white/70
+            opacity-0
+            backdrop-blur-md
+            transition-all
+            duration-500
+            group-hover:bottom-6
+            group-hover:border-cyan-200/35
+            group-hover:text-cyan-100
+            group-hover:opacity-100
+          "
+        >
+          Explore Event
         </div>
       </div>
 
-      {/* Fallback internal modal if used standalone without onCardClick */}
-      {!onCardClick && (
-        <AnimatePresence>
-          {isOpen && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setIsOpen(false)}
-                className="absolute inset-0 bg-black/80 backdrop-blur-md"
-              />
-              {/* Modal contents omitted for brevity, handled globally in FeaturedEvents */}
-            </div>
-          )}
-        </AnimatePresence>
-      )}
-    </>
-  );
-};
+      {/* ================= FRONT CONTENT ================= */}
+      <div
+        className="
+          relative
+          z-10
+          px-5
+          pb-5
+          pt-5
+          sm:px-6
+          sm:pb-6
+        "
+      >
+        {/* Title */}
+        <h3
+          className="
+            text-xl
+            font-bold
+            text-white
+            transition-colors
+            duration-300
+            group-hover:text-cyan-200
+          "
+        >
+          {event.title}
+        </h3>
 
-export default EventCard;
+        {/* Location */}
+        <div
+          className="
+            meta-line
+            mt-2
+            transition-colors
+            duration-300
+            group-hover:text-cyan-100/80
+          "
+        >
+          <MapPin
+            size={15}
+            className="
+              transition-all
+              duration-300
+              group-hover:scale-110
+              group-hover:text-cyan-200
+            "
+          />
+
+          <span>
+            {event.venue || event.location}
+          </span>
+        </div>
+
+        {/* Description */}
+        <p className="mt-3">
+          {shorten(
+            event.description || event.about,
+            190
+          )}
+        </p>
+
+        {/* Actions */}
+        <div className="card-actions mt-5">
+          <button
+            className="
+              outline-action
+              transition-all
+              duration-300
+              hover:-translate-y-0.5
+              hover:border-cyan-200
+              hover:bg-cyan-100
+              hover:text-slate-900
+              hover:shadow-[0_10px_25px_rgba(103,232,249,.14)]
+            "
+            onClick={(e) => {
+              e.stopPropagation();
+              onCardClick?.(event);
+            }}
+          >
+            View Details
+
+            <ArrowRight
+              size={15}
+              className="
+                transition-transform
+                duration-300
+                group-hover:translate-x-1
+              "
+            />
+          </button>
+
+          <span
+            className="
+              flip-label
+              transition-colors
+              duration-300
+              group-hover:text-cyan-200
+            "
+          >
+            Flip
+
+            <RotateCw
+              size={14}
+              className="
+                transition-transform
+                duration-700
+                group-hover:rotate-180
+              "
+            />
+          </span>
+        </div>
+      </div>
+    </motion.article>
+  );
+
+  // ============================================================
+  // BACK SIDE
+  // ============================================================
+
+  const back = (
+    <motion.article
+      className="
+        future-card
+        event-card
+        event-back
+        group
+        relative
+        overflow-hidden
+        transition-all
+        duration-300
+        hover:border-red-400/40
+        hover:shadow-[0_20px_55px_rgba(239,68,68,.16)]
+      "
+    >
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          rounded-3xl
+          bg-gradient-to-br
+          from-red-500/[0.07]
+          via-transparent
+          to-transparent
+          opacity-0
+          transition-opacity
+          duration-500
+          group-hover:opacity-100
+        "
+      />
+
+      <div className="back-topline relative z-10">
+        <span>FULL EVENT DETAILS</span>
+
+        <RotateCw
+          size={17}
+          className="
+            transition-transform
+            duration-500
+            group-hover:rotate-180
+          "
+        />
+      </div>
+
+      <h3
+        className="
+          relative
+          z-10
+          transition-colors
+          duration-300
+          group-hover:text-red-300
+        "
+      >
+        {event.title}
+      </h3>
+
+      <div className="detail-list relative z-10">
+        <div
+          className="
+            transition-all
+            duration-300
+            hover:translate-x-1
+            hover:text-red-300
+          "
+        >
+          <CalendarDays size={17} />
+          <span>{event.date}</span>
+        </div>
+
+        <div
+          className="
+            transition-all
+            duration-300
+            hover:translate-x-1
+            hover:text-red-300
+          "
+        >
+          <MapPin size={17} />
+          <span>
+            {event.venue || event.location}
+          </span>
+        </div>
+
+        <div
+          className="
+            transition-all
+            duration-300
+            hover:translate-x-1
+            hover:text-red-300
+          "
+        >
+          <Users size={17} />
+          <span>
+            {shorten(event.participation, 150)}
+          </span>
+        </div>
+      </div>
+
+      <div
+        className="
+          detail-box
+          relative
+          z-10
+          transition-all
+          duration-300
+          hover:border-red-400/30
+        "
+      >
+        <strong>
+          <BookOpen size={15} />
+          ABOUT
+        </strong>
+
+        <p>{shorten(event.about, 230)}</p>
+      </div>
+
+      <div
+        className="
+          detail-box
+          outcome
+          relative
+          z-10
+          transition-all
+          duration-300
+          hover:border-red-400/30
+        "
+      >
+        <strong>
+          <Award size={15} />
+          KEY OUTCOME
+        </strong>
+
+        <p>{shorten(event.outcome, 190)}</p>
+      </div>
+
+      <button
+        className="
+          primary-action
+          relative
+          z-10
+          transition-all
+          duration-300
+          hover:-translate-y-1
+          hover:shadow-[0_12px_30px_rgba(239,68,68,.25)]
+          active:scale-[.98]
+        "
+        onClick={(e) => {
+          e.stopPropagation();
+          onCardClick?.(event);
+        }}
+      >
+        Open Full Details
+
+        <ArrowRight
+          size={15}
+          className="
+            transition-transform
+            duration-300
+            group-hover:translate-x-1
+          "
+        />
+      </button>
+    </motion.article>
+  );
+
+  return (
+    <FlipCard
+      front={front}
+      back={back}
+      heightClass="min-h-[770px]"
+      ariaLabel={`${event.title} event album`}
+    />
+  );
+}

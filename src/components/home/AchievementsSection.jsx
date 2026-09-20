@@ -30,12 +30,12 @@ const AchievementsSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <GlassCard className="p-8 lg:p-10 border-cyan-500/30 bg-linear-to-br from-[#0c1329]/90 to-[#070b1a]/95">
+              <GlassCard className="p-8 lg:p-10 border-red-500/30 bg-linear-to-br from-[#0c1329]/90 to-[#070b1a]/95">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                   
                   <div className="lg:col-span-4 flex flex-col items-center justify-center text-center">
                     <div className="relative">
-                      <div className="absolute -inset-2 rounded-full bg-linear-to-r from-amber-400 via-cyan-400 to-violet-500 opacity-60 blur-md" />
+                      <div className="absolute -inset-2 rounded-full bg-linear-to-r from-amber-400 via-red-400 to-violet-500 opacity-60 blur-md" />
                       <img
                         src={item.image}
                         alt={item.name}
@@ -46,7 +46,7 @@ const AchievementsSection = () => {
                       </span>
                     </div>
                     <h3 className="mt-4 text-2xl font-bold text-white">{item.name}</h3>
-                    <p className="text-xs text-cyan-300 font-mono tracking-wide">{item.role}</p>
+                    <p className="text-xs text-red-300 font-mono tracking-wide">{item.role}</p>
                   </div>
 
                   <div className="lg:col-span-8 flex flex-col justify-between">
@@ -82,7 +82,7 @@ const AchievementsSection = () => {
 
                     <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
                       <span>Cambridge Institute of Technology, Bengaluru</span>
-                      <span className="flex items-center gap-1 text-cyan-400 font-medium">
+                      <span className="flex items-center gap-1 text-red-400 font-medium">
                         Inspiring Future Batches <ArrowUpRight size={15} />
                       </span>
                     </div>

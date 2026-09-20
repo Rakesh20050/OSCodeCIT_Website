@@ -83,31 +83,31 @@ export default function TeamTree() {
   return (
     <div className="relative w-full">
       {/* Search & Tree Control Toolbar */}
-      <div className="mb-10 flex flex-wrap items-center justify-between gap-4 rounded-3xl border dark:border-cyan-500/30 border-slate-300 dark:bg-[#070d1b]/90 bg-white p-5 shadow-xl backdrop-blur-xl">
+      <div className="mb-10 flex flex-wrap items-center justify-between gap-4 rounded-3xl border dark:border-red-500/30 border-slate-300 dark:bg-[#070d1b]/90 bg-white p-5 shadow-xl backdrop-blur-xl">
         <div className="relative flex-1 min-w-[260px]">
-          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-cyan-600 dark:text-cyan-400" />
+          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-red-600 dark:text-red-400" />
           <input
             type="text"
             placeholder="Search member name, role, or department..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full rounded-2xl border dark:border-white/10 border-slate-300 dark:bg-black/50 bg-slate-50 py-3 pl-12 pr-4 text-sm dark:text-white text-slate-900 placeholder-slate-400 focus:border-cyan-500 focus:outline-none"
+            className="w-full rounded-2xl border dark:border-white/10 border-slate-300 dark:bg-black/50 bg-slate-50 py-3 pl-12 pr-4 text-sm dark:text-white text-slate-900 placeholder-slate-400 focus:border-red-500 focus:outline-none"
           />
         </div>
 
         <div className="flex items-center gap-2.5">
           <button
             onClick={expandAll}
-            className="flex items-center gap-2 rounded-2xl border dark:border-white/10 border-slate-300 dark:bg-white/5 bg-slate-100 px-4 py-2 text-xs font-mono font-medium dark:text-slate-300 text-slate-700 hover:border-cyan-500 transition shadow-xs"
+            className="flex items-center gap-2 rounded-2xl border dark:border-white/10 border-slate-300 dark:bg-white/5 bg-slate-100 px-4 py-2 text-xs font-mono font-medium dark:text-slate-300 text-slate-700 hover:border-red-500 transition shadow-xs"
           >
-            <Maximize2 size={14} className="text-cyan-600 dark:text-cyan-400" />
+            <Maximize2 size={14} className="text-red-600 dark:text-red-400" />
             <span>Expand All</span>
           </button>
           <button
             onClick={collapseAll}
-            className="flex items-center gap-2 rounded-2xl border dark:border-white/10 border-slate-300 dark:bg-white/5 bg-slate-100 px-4 py-2 text-xs font-mono font-medium dark:text-slate-300 text-slate-700 hover:border-cyan-500 transition shadow-xs"
+            className="flex items-center gap-2 rounded-2xl border dark:border-white/10 border-slate-300 dark:bg-white/5 bg-slate-100 px-4 py-2 text-xs font-mono font-medium dark:text-slate-300 text-slate-700 hover:border-red-500 transition shadow-xs"
           >
-            <Minimize2 size={14} className="text-cyan-600 dark:text-cyan-400" />
+            <Minimize2 size={14} className="text-red-600 dark:text-red-400" />
             <span>Collapse</span>
           </button>
         </div>
@@ -135,7 +135,7 @@ export default function TeamTree() {
               onSelect={() => setSelectedMember(facultyNode)}
             />
             {expandedNodes.root && (
-              <div className="h-10 w-1 bg-gradient-to-b from-cyan-400 to-blue-600 my-1 animate-pulse rounded-full" />
+              <div className="h-10 w-1 bg-gradient-to-b from-red-400 to-red-600 my-1 animate-pulse rounded-full" />
             )}
           </div>
 
@@ -148,8 +148,8 @@ export default function TeamTree() {
                 exit={{ opacity: 0, height: 0 }}
                 className="w-full flex flex-col items-center"
               >
-                <div className="mb-6 flex items-center gap-2 rounded-full border dark:border-cyan-400/40 border-cyan-400 dark:bg-cyan-500/10 bg-cyan-100 px-5 py-2 font-mono text-xs font-bold text-cyan-700 dark:text-cyan-300 shadow-lg cursor-pointer hover:bg-cyan-200 transition" onClick={() => toggleNode("leadership")}>
-                  <Shield size={16} className="text-cyan-600 dark:text-cyan-400" />
+                <div className="mb-6 flex items-center gap-2 rounded-full border dark:border-red-400/40 border-red-400 dark:bg-red-500/10 bg-red-100 px-5 py-2 font-mono text-xs font-bold text-red-700 dark:text-red-300 shadow-lg cursor-pointer hover:bg-red-200 transition" onClick={() => toggleNode("leadership")}>
+                  <Shield size={16} className="text-red-600 dark:text-red-400" />
                   <span>Executive Leadership</span>
                   <span className="ml-1">{expandedNodes.leadership ? <ChevronDown size={16} /> : <ChevronRight size={16} />}</span>
                 </div>
@@ -173,7 +173,7 @@ export default function TeamTree() {
                   )}
                 </AnimatePresence>
 
-                <div className="h-10 w-1 bg-gradient-to-b from-blue-600 to-indigo-600 my-4 rounded-full" />
+                <div className="h-10 w-1 bg-gradient-to-b from-red-600 to-red-600 my-4 rounded-full" />
 
                 {/* LEVEL 2: DEPARTMENT BRANCHES */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-6xl">
@@ -230,13 +230,13 @@ function TreeNodeCard({ member, isRoot = false, expanded, onToggle, onSelect }) 
       whileTap={{ scale: 0.98 }}
       className={`group relative flex items-center gap-5 rounded-3xl border p-5 shadow-xl backdrop-blur-2xl transition-all cursor-pointer ${
         isRoot
-          ? "border-cyan-500 dark:text-white text-slate-900 text-white min-w-[320px] shadow-cyan-500/20"
-          : "dark:border-white/15 border-slate-300 dark:bg-[#091124]/95 bg-white hover:border-cyan-400 dark:text-slate-100 text-slate-900"
+          ? "border-red-500 dark:text-white text-slate-900 text-white min-w-[320px] shadow-red-500/20"
+          : "dark:border-white/15 border-slate-300 dark:bg-[#091124]/95 bg-white hover:border-red-400 dark:text-slate-100 text-slate-900"
       }`}
       onClick={onSelect}
     >
       {/* Significantly larger profile picture */}
-      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border-2 border-cyan-400/40 shadow-md bg-slate-200 dark:bg-slate-800">
+      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border-2 border-red-400/40 shadow-md bg-slate-200 dark:bg-slate-800">
         <img
           src={member.image || "/images/logos/logo.svg"}
           alt={member.name}
@@ -249,7 +249,7 @@ function TreeNodeCard({ member, isRoot = false, expanded, onToggle, onSelect }) 
 
       <div className="min-w-0 flex-1">
         <div className="flex items-center justify-between gap-2">
-          <h4 className="truncate text-base font-bold dark:text-white text-slate-900 group-hover:text-cyan-500 dark:group-hover:text-cyan-300 transition-colors">
+          <h4 className="truncate text-base font-bold dark:text-white text-slate-900 group-hover:text-red-500 dark:group-hover:text-red-300 transition-colors">
             {member.name}
           </h4>
           {onToggle && (
@@ -265,7 +265,7 @@ function TreeNodeCard({ member, isRoot = false, expanded, onToggle, onSelect }) 
             </button>
           )}
         </div>
-        <p className="truncate font-mono text-xs text-cyan-600 dark:text-cyan-400 font-semibold mt-0.5">{member.role}</p>
+        <p className="truncate font-mono text-xs text-red-600 dark:text-red-400 font-semibold mt-0.5">{member.role}</p>
         <span className="inline-block mt-2 rounded-lg dark:bg-white/5 bg-slate-100 border dark:border-white/10 border-slate-200 px-2.5 py-0.5 font-mono text-[10px] dark:text-slate-300 text-slate-600 shadow-xs">
           {member.department}
         </span>
@@ -279,10 +279,10 @@ function DepartmentBranch({title,icon: Icon,expanded,onToggle,leads,members,onSe
     <div className="flex flex-col items-center rounded-3xl border dark:border-white/15 border-slate-200 dark:bg-[#060c18]/90 bg-white p-6 shadow-2xl backdrop-blur-xl">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between gap-3 rounded-2xl border dark:border-cyan-500/40 border-cyan-300 dark:bg-cyan-500/10 bg-cyan-50 px-5 py-3.5 font-mono text-xs font-bold text-cyan-700 dark:text-cyan-300 hover:bg-cyan-100 dark:hover:bg-cyan-500/20 transition shadow-sm"
+        className="w-full flex items-center justify-between gap-3 rounded-2xl border dark:border-red-500/40 border-red-300 dark:bg-red-500/10 bg-red-50 px-5 py-3.5 font-mono text-xs font-bold text-red-700 dark:text-red-300 hover:bg-red-100 dark:hover:bg-red-500/20 transition shadow-sm"
       >
         <div className="flex items-center gap-2.5">
-          <Icon size={18} className="text-cyan-600 dark:text-cyan-400" />
+          <Icon size={18} className="text-red-600 dark:text-red-400" />
           <span className="text-sm font-bold">{title}</span>
         </div>
         {expanded ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
@@ -299,7 +299,7 @@ function DepartmentBranch({title,icon: Icon,expanded,onToggle,leads,members,onSe
           >
             {leads.length > 0 && (
               <div>
-                <span className="font-mono text-[11px] uppercase text-cyan-600 dark:text-cyan-400 font-bold tracking-wider mb-3 block">
+                <span className="font-mono text-[11px] uppercase text-red-600 dark:text-red-400 font-bold tracking-wider mb-3 block">
                   Department Lead(s)
                 </span>
                 <div className="space-y-3">
@@ -353,7 +353,7 @@ function MemberDetailModal({ member, onClose }) {
           initial={{ opacity: 0, scale: 0.9, y: 25 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 25 }}
-          className="relative z-10 w-full max-w-lg overflow-hidden rounded-3xl border dark:border-cyan-500/40 border-slate-300 dark:bg-[#070e1e]/95 bg-white p-8 shadow-2xl dark:text-white text-slate-900 backdrop-blur-2xl"
+          className="relative z-10 w-full max-w-lg overflow-hidden rounded-3xl border dark:border-red-500/40 border-slate-300 dark:bg-[#070e1e]/95 bg-white p-8 shadow-2xl dark:text-white text-slate-900 backdrop-blur-2xl"
         >
           <div className="flex justify-end">
             <button
@@ -367,7 +367,7 @@ function MemberDetailModal({ member, onClose }) {
 
           <div className="flex flex-col items-center text-center -mt-4">
             {/* Large high-res profile photo in popup */}
-            <div className="relative h-32 w-32 overflow-hidden rounded-3xl border-2 border-cyan-400 shadow-2xl shadow-cyan-500/40 bg-slate-200 dark:bg-slate-800">
+            <div className="relative h-32 w-32 overflow-hidden rounded-3xl border-2 border-red-400 shadow-2xl shadow-red-500/40 bg-slate-200 dark:bg-slate-800">
               <img
                 src={member.image || "/images/logos/logo.svg"}
                 alt={member.name}
@@ -379,8 +379,8 @@ function MemberDetailModal({ member, onClose }) {
             </div>
 
             <h3 className="mt-5 text-2xl sm:text-3xl font-black dark:text-white text-slate-900">{member.name}</h3>
-            <p className="font-mono text-sm sm:text-base font-bold text-cyan-600 dark:text-cyan-400 mt-1">{member.role}</p>
-            <span className="mt-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-4 py-1 font-mono text-xs font-semibold text-cyan-700 dark:text-cyan-300">
+            <p className="font-mono text-sm sm:text-base font-bold text-red-600 dark:text-red-400 mt-1">{member.role}</p>
+            <span className="mt-2 rounded-full border border-red-400/30 bg-red-500/10 px-4 py-1 font-mono text-xs font-semibold text-red-700 dark:text-red-300">
               {member.department}
             </span>
 
@@ -394,7 +394,7 @@ function MemberDetailModal({ member, onClose }) {
                   href={member.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2 rounded-2xl border dark:border-white/10 border-slate-300 dark:bg-white/5 bg-slate-100 px-5 py-2.5 text-xs sm:text-sm font-bold dark:text-slate-200 text-slate-800 transition hover:border-cyan-500 hover:bg-cyan-500/10"
+                  className="flex items-center gap-2 rounded-2xl border dark:border-white/10 border-slate-300 dark:bg-white/5 bg-slate-100 px-5 py-2.5 text-xs sm:text-sm font-bold dark:text-slate-200 text-slate-800 transition hover:border-red-500 hover:bg-red-500/10"
                 >
                   <FaGithub size={18} />
                   <span>GitHub</span>
@@ -406,7 +406,7 @@ function MemberDetailModal({ member, onClose }) {
                   href={member.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2 rounded-2xl border dark:border-white/10 border-slate-300 dark:bg-white/5 bg-slate-100 px-5 py-2.5 text-xs sm:text-sm font-bold text-blue-600 transition hover:border-blue-400 hover:bg-blue-500/10"
+                  className="flex items-center gap-2 rounded-2xl border dark:border-white/10 border-slate-300 dark:bg-white/5 bg-slate-100 px-5 py-2.5 text-xs sm:text-sm font-bold text-red-600 transition hover:border-red-400 hover:bg-red-500/10"
                 >
                   <FaLinkedin size={18} />
                   <span>LinkedIn</span>

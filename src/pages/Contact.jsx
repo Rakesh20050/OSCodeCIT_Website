@@ -1,201 +1,26 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Mail, MapPin, Send, MessageSquare } from "lucide-react";
+import { Mail, MapPin, Send, MessageSquare, ArrowUpRight } from "lucide-react";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import Container from "../components/common/Container";
-import SectionBadge from "../components/common/SectionBadge";
-import GradientText from "../components/common/GradientText";
+import PageIntro from "../components/common/PageIntro";
+import NeonFrame from "../components/common/NeonFrame";
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    subject: "",
-    message: "",
-  });
-
-  const handleSendEmail = (e) => {
-    e.preventDefault();
-
-    const recipient = "oscodecit@cambridge.edu.in";
-    const emailSubject = encodeURIComponent(formData.subject || "Inquiry for OSCode CIT");
-    const emailBody = encodeURIComponent(
-      `Hi OSCode CIT Team,\n\n\({formData.message}\n\nBest regards,\n\){formData.name}`
-    );
-
-    window.location.href = `mailto:\({recipient}?subject=\){emailSubject}&body=${emailBody}`;
-  };
-
-  return (
-    <section className="min-h-screen pt-28 sm:pt-32 pb-16 sm:pb-20 relative overflow-hidden">
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-[140px] -z-10 pointer-events-none" />
-
-      <Container>
-        <div className="mx-auto max-w-3xl text-center">
-          <SectionBadge>Get In Touch</SectionBadge>
-          <h1 className="mt-4 text-4xl sm:text-6xl font-black dark:text-white text-slate-900 tracking-tight">
-            Let’s Build <GradientText>Together</GradientText>
-          </h1>
-          <p className="mt-4 text-base sm:text-lg dark:text-slate-300 text-slate-600">
-            Have an idea for a workshop, open-source project, or want to collaborate with our club?
-          </p>
+export default function Contact() {
+  const [form, setForm] = useState({ name: "", subject: "", message: "" });
+  const send = (e) => { e.preventDefault(); const subject = encodeURIComponent(form.subject || "Inquiry for OSCode CIT"); const body = encodeURIComponent(`Hi OSCode CIT Team,\n\n${form.message}\n\nBest regards,\n${form.name}`); window.location.href = `mailto:oscodecit@cambridge.edu.in?subject=${subject}&body=${body}`; };
+  return <main className="future-page"><Container className="!max-w-[1450px]">
+    <PageIntro icon={MessageSquare} eyebrow="OSCODE / CONNECT" title="Let's Build" accent="Together" description="Have an idea for a workshop, open-source project, research activity, or collaboration? Reach the OSCode CIT team." />
+    <div className="contact-layout">
+      <NeonFrame eyebrow="CONTACT DIRECTORY" title="Find OSCode CIT" description="Use the official channels below for collaboration and community conversations.">
+        <div className="contact-stack">
+          <a className="contact-card" href="mailto:oscodecit@cambridge.edu.in"><span><Mail size={21}/></span><div><small>OFFICIAL EMAIL</small><strong>oscodecit@cambridge.edu.in</strong></div><ArrowUpRight size={17}/></a>
+          <div className="contact-card"><span><MapPin size={21}/></span><div><small>CAMPUS LOCATION</small><strong>Cambridge Institute of Technology</strong><p>SMV Block Auditorium, Bengaluru, Karnataka</p></div></div>
+          <div className="contact-socials"><a href="https://github.com/oscode-cit" target="_blank" rel="noreferrer"><FaGithub/> GitHub</a><a href="https://www.linkedin.com/company/oscodecit/" target="_blank" rel="noreferrer"><FaLinkedin/> LinkedIn</a><a href="https://www.instagram.com/oscodecit" target="_blank" rel="noreferrer"><FaInstagram/> Instagram</a></div>
         </div>
-
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          <motion.div
-            className="lg:col-span-5 flex flex-col gap-6"
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="rounded-3xl border dark:border-white/15 border-slate-200 dark:bg-[#050505]/95 bg-white p-5 sm:p-7 backdrop-blur-xl shadow-sm dark:shadow-none hover:border-slate-300">
-              <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-500/10 border border-cyan-400/20 text-cyan-600 dark:text-cyan-400">
-                  <Mail size={22} />
-                </div>
-                <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider dark:text-slate-400 text-slate-500">
-                    Official Email
-                  </h3>
-                  <a
-                    href="mailto:oscodecit@cambridge.edu.in"
-                    className="mt-1 block text-base sm:text-lg font-bold dark:text-white text-slate-900 hover:text-cyan-500 transition break-all"
-                  >
-                    oscodecit@cambridge.edu.in
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rounded-3xl border dark:border-white/15 border-slate-200 dark:bg-[#050505]/95 bg-white p-5 sm:p-7 backdrop-blur-xl shadow-sm dark:shadow-none hover:border-slate-300">
-              <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/10 border border-violet-400/20 text-violet-600 dark:text-violet-400">
-                  <MapPin size={22} />
-                </div>
-                <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider dark:text-slate-400 text-slate-500">
-                    Campus Location
-                  </h3>
-                  <p className="mt-1 text-base font-bold dark:text-white text-slate-900">
-                    Cambridge Institute of Technology
-                  </p>
-                  <p className="text-xs dark:text-slate-300 text-slate-600 mt-0.5">
-                    SMV Block Auditorium, Bengaluru, Karnataka
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="rounded-3xl border dark:border-white/10 border-slate-200 dark:bg-[#050505]/95 bg-white p-5 sm:p-7 backdrop-blur-xl shadow-sm dark:shadow-none hover:border-slate-300">
-              <h3 className="text-xs font-semibold uppercase tracking-wider dark:text-slate-400 text-slate-500">
-                Official Channels
-              </h3>
-
-              <div className="mt-5 grid grid-cols-3 gap-3">
-                <a
-                  href="https://github.com/oscode-cit"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex flex-col items-center justify-center gap-2 rounded-2xl border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-slate-50 dark:text-white text-slate-800 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500 shadow-xs"
-                >
-                  <FaGithub size={22} />
-                  <span className="text-xs font-semibold">GitHub</span>
-                </a>
-
-                <a
-                  href="https://www.linkedin.com/company/oscodecit/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex flex-col items-center justify-center gap-2 rounded-2xl border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-slate-50 text-blue-600 transition-all duration-300 hover:-translate-y-1 hover:border-blue-400 shadow-xs"
-                >
-                  <FaLinkedin size={22} />
-                  <span className="text-xs font-semibold">LinkedIn</span>
-                </a>
-
-                <a
-                  href="https://www.instagram.com/oscodecit"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex flex-col items-center justify-center gap-2 rounded-2xl border dark:border-white/10 border-slate-200 dark:bg-white/5 bg-slate-50 text-pink-600 transition-all duration-300 hover:-translate-y-1 hover:border-pink-400 shadow-xs"
-                >
-                  <FaInstagram size={22} />
-                  <span className="text-xs font-semibold">Instagram</span>
-                </a>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="lg:col-span-7"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="rounded-3xl border dark:border-white/15 border-slate-200 dark:bg-[#050505]/95 bg-white p-8 sm:p-10 backdrop-blur-xl shadow-xl dark:shadow-2xl">
-              <div className="flex items-center gap-3">
-                <MessageSquare className="text-cyan-500 dark:text-cyan-400" size={22} />
-                <h2 className="text-2xl font-bold dark:text-white text-slate-900">Compose a Message</h2>
-              </div>
-              <p className="mt-2 text-sm dark:text-slate-300 text-slate-600">
-                Write your message below. Clicking send will open your Gmail/email client with everything filled out.
-              </p>
-
-              <form onSubmit={handleSendEmail} className="mt-8 space-y-5">
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider dark:text-slate-300 text-slate-700 mb-2">
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Alex Sharma"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full rounded-xl border dark:border-white/15 border-slate-300 dark:bg-white/5 bg-slate-50 px-4 py-3.5 text-sm dark:text-white text-slate-900 placeholder-slate-400 outline-none transition focus:border-cyan-500 focus:bg-transparent"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider dark:text-slate-300 text-slate-700 mb-2">
-                    Subject / Topic
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Workshop Collaboration / Club Inquiry"
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full rounded-xl border dark:border-white/15 border-slate-300 dark:bg-white/5 bg-slate-50 px-4 py-3.5 text-sm dark:text-white text-slate-900 placeholder-slate-400 outline-none transition focus:border-cyan-500 focus:bg-transparent"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider dark:text-slate-300 text-slate-700 mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    rows={5}
-                    required
-                    placeholder="Type your message or proposal..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full rounded-xl border dark:border-white/15 border-slate-300 dark:bg-white/5 bg-slate-50 px-4 py-3.5 text-sm dark:text-white text-slate-900 placeholder-slate-400 outline-none transition focus:border-cyan-500 focus:bg-transparent resize-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 py-4 font-bold text-white transition-all duration-300 hover:shadow-[0_0_25px_rgba(6,182,212,0.4)] hover:scale-[1.01]"
-                >
-                  <Send size={18} />
-                  Open in Gmail / Email Client
-                </button>
-              </form>
-            </div>
-          </motion.div>
-        </div>
-      </Container>
-    </section>
-  );
-};
-
-export default Contact;
+      </NeonFrame>
+      <NeonFrame eyebrow="MESSAGE CONSOLE" title="Compose a Message" description="Fill the form and your email client will open with the message prepared.">
+        <form className="future-form" onSubmit={send}><label>YOUR NAME<input required value={form.name} onChange={(e) => setForm({...form,name:e.target.value})} placeholder="Your name"/></label><label>SUBJECT / TOPIC<input required value={form.subject} onChange={(e) => setForm({...form,subject:e.target.value})} placeholder="Workshop collaboration / project inquiry"/></label><label>MESSAGE<textarea required rows={7} value={form.message} onChange={(e) => setForm({...form,message:e.target.value})} placeholder="Write your message..."/></label><button className="primary-action" type="submit"><Send size={17}/> Open Email Client</button></form>
+      </NeonFrame>
+    </div>
+  </Container></main>;
+}

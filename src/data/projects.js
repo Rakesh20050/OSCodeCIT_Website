@@ -26,7 +26,7 @@ export const projects = [
     ],
     github: "https://github.com/oscode-cit/vibe-tagger",
     liveDemo: "https://vibe-tagger-oscode-cit.vercel.app",
-    images: ["/images/logos/logo.svg"],
+    images: ["/images/projects/vibe-tagger.png"],
   },
   {
     id: "os-club-live-collaboration",
@@ -48,7 +48,7 @@ export const projects = [
     technologies: ["React", "Flutter", "Node.js", "WebSockets", "GitHub API", "Firestore"],
     github: "https://github.com/durgaprajapati083/os-club",
     liveDemo: "https://oscodecit.in",
-    images: ["/images/logos/logo.svg"],
+    images: ["/images/projects/oscodespace.png"],
   },
   {
     id: "oscode-web-platform",
@@ -70,7 +70,7 @@ export const projects = [
     technologies: ["React", "Tailwind CSS", "Framer Motion", "Vite", "Vercel"],
     github: "https://github.com/oscode-cit/OSCodeCIT_Website",
     liveDemo: "https://oscodecit.in",
-    images: ["/images/logos/logo.svg"],
+    images: ["/images/projects/oscodewebsite.png"],
   },
   {
     id: "snippet-studio",
@@ -92,6 +92,6 @@ export const projects = [
     technologies: ["React", "Monaco Editor", "Supabase", "Judge0 API", "Tailwind CSS"],
     github: "https://github.com/oscode-cit/snippet-studio",
     liveDemo: "",
-    images: ["/images/logos/logo.svg"],
+    images: ["/images/projects/codeide.png"],
   },
 ];

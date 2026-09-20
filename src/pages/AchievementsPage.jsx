@@ -1,69 +1,24 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Trophy, Medal, Users, Star } from "lucide-react";
 import Container from "../components/common/Container";
-import SectionBadge from "../components/common/SectionBadge";
+import PageIntro from "../components/common/PageIntro";
+import NeonFrame from "../components/common/NeonFrame";
 import AchievementCard from "../components/achievements/AchievementCard";
 import { achievements } from "../data/achievements";
 
-const categories = ["All", "Hackathon", "Summit", "Alumni"];
-
-const AchievementsPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
-  const filteredAchievements =
-    selectedCategory === "All"
-      ? achievements
-      : achievements.filter((a) => a.category === selectedCategory);
-
+export default function AchievementsPage() {
+  const [filter, setFilter] = useState("All");
+  const filters = ["All", "Hackathon", "Summit", "Alumni"];
+  const list = filter === "All" ? achievements : achievements.filter((a) => filter === "Hackathon" ? a.category.toLowerCase().includes("award") : filter === "Summit" ? a.category === "Summit" : filter === "Alumni" ? a.category.includes("Individual") : true);
   return (
-    <section className="pt-32 sm:pt-40 pb-20 sm:pb-28 relative min-h-screen">
-      <Container>
-        <div className="mx-auto max-w-3xl text-center">
-          <SectionBadge>Hall of Fame</SectionBadge>
-          <h1 className="mt-4 text-4xl sm:text-5xl font-black dark:text-white text-slate-900 tracking-tight">
-            All Achievements & Awards
-          </h1>
-          <p className="mt-3 text-sm sm:text-base dark:text-slate-300 text-slate-600">
-            A comprehensive record of hackathons won, summits represented, and career milestones.
-          </p>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`rounded-full px-5 py-2 text-xs sm:text-sm font-semibold transition-all ${
-                  selectedCategory === cat
-                    ? "bg-[#00A8FF] text-black font-bold shadow-lg shadow-[#00A8FF]/25"
-                    : "bg-white/4 dark:text-slate-300 text-slate-600 hover:bg-white/10 border border-white/10"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 items-stretch">
-          <AnimatePresence>
-            {filteredAchievements.map((item) => (
-              <motion.div
-                key={item.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.25 }}
-                className="flex"
-              >
-                <AchievementCard item={item} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+    <main className="future-page">
+      <Container className="!max-w-[1580px]">
+        <PageIntro icon={Trophy} eyebrow="OSCODE / RECOGNITION REGISTRY" title="Our" accent="Achievements" description="A clean archive of awards, technical recognition, summit participation, mentorship, and alumni milestones." stats={[{ value: `${achievements.length}+`, label: "Milestones", icon: Trophy }, { value: "1st", label: "Best Lab Idea", icon: Medal }, { value: "8+", label: "Categories", icon: Star }]} />
+        <div className="future-tabs">{filters.map((f) => <button key={f} className={filter === f ? "active" : ""} onClick={() => setFilter(f)}>{f}</button>)}</div>
+        <NeonFrame eyebrow="ACHIEVEMENT COLLECTION" title="Recognition Albums" description="Every milestone stays inside a complete, spacious card with image, metric, description, and details.">
+          <div className="future-grid three-col">{list.map((item) => <AchievementCard key={item.id} item={item}/>)}</div>
+        </NeonFrame>
       </Container>
-    </section>
+    </main>
   );
-};
-
-export default AchievementsPage;
+}

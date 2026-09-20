@@ -8,7 +8,7 @@ import { ThemeProvider } from "../../context/ThemeContext";
 const RootLayout = () => {
   return (
     <ThemeProvider>
-      <div className="site-bg-mesh min-h-screen flex flex-col justify-between selection:bg-cyan-400 selection:text-slate-950 transition-colors duration-300">
+      <div className="site-bg-mesh min-h-screen flex flex-col justify-between selection:bg-red-500/40 selection:text-white transition-colors duration-300">
         <Preloader />
         <ScrollToTop />
         <Navbar />

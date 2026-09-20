@@ -44,12 +44,12 @@ export default function AuthModal({ isOpen, onClose }) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
           transition={{ type: "spring", stiffness: 350, damping: 28 }}
-          className="relative z-10 w-full max-w-md overflow-hidden rounded-2xl border border-cyan-500/30 bg-[#080d1a]/95 p-6 shadow-[0_0_50px_rgba(0,168,255,0.25)] text-slate-100 backdrop-blur-2xl"
+          className="relative z-10 w-full max-w-md overflow-hidden rounded-2xl border border-red-500/30 bg-[#080d1a]/95 p-6 shadow-[0_0_50px_rgba(0,168,255,0.25)] text-slate-100 backdrop-blur-2xl"
         >
           {/* Header Bar */}
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-500/10 text-cyan-400">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-red-500/30 bg-red-500/10 text-red-400">
                 <Lock size={18} />
               </div>
               <div>
@@ -90,7 +90,7 @@ export default function AuthModal({ isOpen, onClose }) {
                   onClick={() => setTab("signin")}
                   className={`flex-1 rounded-lg py-2 text-xs font-bold transition-all ${
                     tab === "signin"
-                      ? "bg-cyan-500 text-black shadow-md shadow-cyan-500/20"
+                      ? "bg-red-500 text-black shadow-md shadow-red-500/20"
                       : "text-slate-400 hover:text-white"
                   }`}
                 >
@@ -100,7 +100,7 @@ export default function AuthModal({ isOpen, onClose }) {
                   onClick={() => setTab("register")}
                   className={`flex-1 rounded-lg py-2 text-xs font-bold transition-all ${
                     tab === "register"
-                      ? "bg-cyan-500 text-black shadow-md shadow-cyan-500/20"
+                      ? "bg-red-500 text-black shadow-md shadow-red-500/20"
                       : "text-slate-400 hover:text-white"
                   }`}
                 >
@@ -113,7 +113,7 @@ export default function AuthModal({ isOpen, onClose }) {
                 <button
                   type="button"
                   onClick={() => handleSubmit({ preventDefault: () => {} })}
-                  className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-2.5 text-xs font-medium text-slate-200 transition hover:border-cyan-500/40 hover:bg-white/10 active:scale-95"
+                  className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-2.5 text-xs font-medium text-slate-200 transition hover:border-red-500/40 hover:bg-white/10 active:scale-95"
                 >
                   <FaGithub size={16} />
                   GitHub
@@ -121,7 +121,7 @@ export default function AuthModal({ isOpen, onClose }) {
                 <button
                   type="button"
                   onClick={() => handleSubmit({ preventDefault: () => {} })}
-                  className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-2.5 text-xs font-medium text-slate-200 transition hover:border-cyan-500/40 hover:bg-white/10 active:scale-95"
+                  className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-2.5 text-xs font-medium text-slate-200 transition hover:border-red-500/40 hover:bg-white/10 active:scale-95"
                 >
                   <FaGoogle size={14} className="text-red-400" />
                   Google
@@ -153,7 +153,7 @@ export default function AuthModal({ isOpen, onClose }) {
                           placeholder="Alex Rivera"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full rounded-xl border border-white/10 bg-black/50 py-2 pl-9 pr-3 text-xs text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none"
+                          className="w-full rounded-xl border border-white/10 bg-black/50 py-2 pl-9 pr-3 text-xs text-white placeholder-slate-500 focus:border-red-500 focus:outline-none"
                         />
                       </div>
                     </div>
@@ -169,7 +169,7 @@ export default function AuthModal({ isOpen, onClose }) {
                           placeholder="1CD22CS000"
                           value={formData.usn}
                           onChange={(e) => setFormData({ ...formData, usn: e.target.value })}
-                          className="w-full rounded-xl border border-white/10 bg-black/50 py-2 px-3 text-xs text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none uppercase"
+                          className="w-full rounded-xl border border-white/10 bg-black/50 py-2 px-3 text-xs text-white placeholder-slate-500 focus:border-red-500 focus:outline-none uppercase"
                         />
                       </div>
                       <div>
@@ -179,7 +179,7 @@ export default function AuthModal({ isOpen, onClose }) {
                         <select
                           value={formData.department}
                           onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                          className="w-full rounded-xl border border-white/10 bg-black/50 py-2 px-2 text-xs text-white focus:border-cyan-500 focus:outline-none"
+                          className="w-full rounded-xl border border-white/10 bg-black/50 py-2 px-2 text-xs text-white focus:border-red-500 focus:outline-none"
                         >
                           <option value="CSE">CSE</option>
                           <option value="ISE">ISE</option>
@@ -204,7 +204,7 @@ export default function AuthModal({ isOpen, onClose }) {
                       placeholder="student@cit.edu.in"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full rounded-xl border border-white/10 bg-black/50 py-2 pl-9 pr-3 text-xs text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none"
+                      className="w-full rounded-xl border border-white/10 bg-black/50 py-2 pl-9 pr-3 text-xs text-white placeholder-slate-500 focus:border-red-500 focus:outline-none"
                     />
                   </div>
                 </div>
@@ -221,7 +221,7 @@ export default function AuthModal({ isOpen, onClose }) {
                       placeholder="••••••••"
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                      className="w-full rounded-xl border border-white/10 bg-black/50 py-2 pl-9 pr-3 text-xs text-white placeholder-slate-500 focus:border-cyan-500 focus:outline-none"
+                      className="w-full rounded-xl border border-white/10 bg-black/50 py-2 pl-9 pr-3 text-xs text-white placeholder-slate-500 focus:border-red-500 focus:outline-none"
                     />
                   </div>
                 </div>
@@ -239,7 +239,7 @@ export default function AuthModal({ isOpen, onClose }) {
                           onClick={() => setRole(r)}
                           className={`rounded-lg border py-1.5 uppercase transition ${
                             role === r
-                              ? "border-cyan-400 bg-cyan-500/20 text-cyan-300 font-bold"
+                              ? "border-red-400 bg-red-500/20 text-red-300 font-bold"
                               : "border-white/10 bg-white/5 text-slate-400 hover:text-white"
                           }`}
                         >
@@ -252,7 +252,7 @@ export default function AuthModal({ isOpen, onClose }) {
 
                 <button
                   type="submit"
-                  className="group relative mt-2 flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-2.5 text-xs font-bold text-slate-950 shadow-lg shadow-cyan-500/30 transition hover:from-cyan-400 hover:to-blue-500 active:scale-95"
+                  className="group relative mt-2 flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-red-500 to-red-600 py-2.5 text-xs font-bold text-slate-950 shadow-lg shadow-red-500/30 transition hover:from-red-400 hover:to-red-500 active:scale-95"
                 >
                   <span>{tab === "signin" ? "Sign In to Dashboard" : "Register Account"}</span>
                   <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
@@ -260,7 +260,7 @@ export default function AuthModal({ isOpen, onClose }) {
               </form>
 
               <div className="mt-4 flex items-center justify-center gap-1 text-center font-mono text-[10px] text-slate-500">
-                <ShieldCheck size={12} className="text-cyan-400" />
+                <ShieldCheck size={12} className="text-red-400" />
                 OSCode CIT Security Protocol • Open Source Network
               </div>
             </>

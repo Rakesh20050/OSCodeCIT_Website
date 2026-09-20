@@ -9,7 +9,7 @@ export default function Preloader({ onComplete }) {
     const timer = setTimeout(() => {
       setLoading(false);
       if (onComplete) onComplete();
-    }, 2400);
+    }, 1400);
     return () => clearTimeout(timer);
   }, [onComplete]);
 
@@ -23,14 +23,14 @@ export default function Preloader({ onComplete }) {
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#030712] !text-white overflow-hidden select-none"
         >
           {/* Cinematic Spotlight */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-600/25 via-[#030712]/90 to-[#030712] pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-600/25 via-[#030712]/90 to-[#030712] pointer-events-none" />
 
           {/* Animated Light Beams & Sound Rings */}
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: [0.8, 1.3, 1.1], opacity: [0.3, 0.7, 0.4] }}
             transition={{ duration: 2, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
-            className="absolute h-96 w-96 rounded-full bg-cyan-500/20 blur-[100px] pointer-events-none"
+            className="absolute h-96 w-96 rounded-full bg-red-500/20 blur-[100px] pointer-events-none"
           />
 
           {/* Movie Intro Center Logo Box */}
@@ -43,9 +43,9 @@ export default function Preloader({ onComplete }) {
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
               className="relative mb-6"
             >
-              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600 opacity-60 blur-xl animate-pulse" />
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-red-500 via-red-500 to-red-600 opacity-60 blur-xl animate-pulse" />
               
-              <div className="relative flex h-24 w-24 sm:h-28 sm:w-28 items-center justify-center rounded-3xl border border-cyan-400/50 bg-[#060c1d] p-4 shadow-[0_0_60px_rgba(0,168,255,0.4)] backdrop-blur-2xl">
+              <div className="relative flex h-24 w-24 sm:h-28 sm:w-28 items-center justify-center rounded-3xl border border-red-400/50 bg-[#060c1d] p-4 shadow-[0_0_60px_rgba(0,168,255,0.4)] backdrop-blur-2xl">
                 <img
                   src="/images/logos/logo.svg"
                   alt="OSCode Logo"
@@ -62,8 +62,8 @@ export default function Preloader({ onComplete }) {
               className="flex flex-col items-center"
             >
               <div className="flex items-center gap-2 mb-2">
-                <Terminal size={14} className="!text-cyan-400 animate-pulse" />
-                <span className="font-mono text-[11px] font-extrabold uppercase tracking-[0.3em] !text-cyan-400">
+                <Terminal size={14} className="!text-red-400 animate-pulse" />
+                <span className="font-mono text-[11px] font-extrabold uppercase tracking-[0.3em] !text-red-400">
                   PRESENTS
                 </span>
               </div>
@@ -82,7 +82,7 @@ export default function Preloader({ onComplete }) {
               initial={{ opacity: 0, scaleX: 0 }}
               animate={{ opacity: 1, scaleX: 1 }}
               transition={{ duration: 1.6, delay: 0.4, ease: "easeInOut" }}
-              className="mt-8 h-[2px] w-48 sm:w-64 rounded-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_15px_#00A8FF]"
+              className="mt-8 h-[2px] w-48 sm:w-64 rounded-full bg-gradient-to-r from-transparent via-red-400 to-transparent shadow-[0_0_15px_#EF4444]"
             />
           </div>
         </motion.div>

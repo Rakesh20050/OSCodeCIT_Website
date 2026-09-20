@@ -27,7 +27,7 @@ const bentoItems = [
     ],
     color: "cyan",
     badgeColor:
-      "dark:bg-cyan-500/20 bg-cyan-100 text-cyan-700 dark:text-cyan-300 dark:border-cyan-400/40 border-cyan-300",
+      "dark:bg-red-500/20 bg-red-100 text-red-700 dark:text-red-300 dark:border-red-400/40 border-red-300",
   },
   {
     id: "hackathons",
@@ -75,7 +75,7 @@ const bentoItems = [
     ],
     color: "purple",
     badgeColor:
-      "dark:bg-purple-500/20 bg-purple-100 text-purple-800 dark:text-purple-300 dark:border-purple-400/40 border-purple-300",
+      "dark:bg-red-500/20 bg-red-100 text-red-800 dark:text-red-300 dark:border-red-400/40 border-red-300",
   },
   {
     id: "workshops",
@@ -91,7 +91,7 @@ const bentoItems = [
     ],
     color: "blue",
     badgeColor:
-      "dark:bg-blue-500/20 bg-blue-100 text-blue-800 dark:text-blue-300 dark:border-blue-400/40 border-blue-300",
+      "dark:bg-red-500/20 bg-red-100 text-red-800 dark:text-red-300 dark:border-red-400/40 border-red-300",
   },
   {
     id: "community",
@@ -113,10 +113,10 @@ const bentoItems = [
 
 const colorMap = {
   cyan: {
-    glow: "bg-cyan-500/20",
-    border: "hover:border-cyan-400/60",
-    icon: "text-cyan-600 dark:text-cyan-300",
-    line: "via-cyan-400/50",
+    glow: "bg-red-500/20",
+    border: "hover:border-red-400/60",
+    icon: "text-red-600 dark:text-red-300",
+    line: "via-red-400/50",
   },
   amber: {
     glow: "bg-amber-500/20",
@@ -131,16 +131,16 @@ const colorMap = {
     line: "via-emerald-400/50",
   },
   purple: {
-    glow: "bg-purple-500/20",
-    border: "hover:border-purple-400/60",
-    icon: "text-purple-600 dark:text-purple-300",
-    line: "via-purple-400/50",
+    glow: "bg-red-500/20",
+    border: "hover:border-red-400/60",
+    icon: "text-red-600 dark:text-red-300",
+    line: "via-red-400/50",
   },
   blue: {
-    glow: "bg-blue-500/20",
-    border: "hover:border-blue-400/60",
-    icon: "text-blue-600 dark:text-blue-300",
-    line: "via-blue-400/50",
+    glow: "bg-red-500/20",
+    border: "hover:border-red-400/60",
+    icon: "text-red-600 dark:text-red-300",
+    line: "via-red-400/50",
   },
   rose: {
     glow: "bg-rose-500/20",
@@ -256,7 +256,7 @@ function FeatureCard({ item, index, activeItem, setActiveItem }) {
             {item.title}
           </h3>
 
-          <p className="mt-1 font-mono text-[11px] font-medium text-cyan-600 dark:text-cyan-400">
+          <p className="mt-1 font-mono text-[11px] font-medium text-red-600 dark:text-red-400">
             {item.tagline}
           </p>
 
@@ -270,7 +270,7 @@ function FeatureCard({ item, index, activeItem, setActiveItem }) {
           animate={{
             opacity: isActive ? 1 : 0,
           }}
-          className="pointer-events-none absolute bottom-0 right-0 h-20 w-20 rounded-tl-full bg-cyan-400/5"
+          className="pointer-events-none absolute bottom-0 right-0 h-20 w-20 rounded-tl-full bg-red-400/5"
         />
       </div>
     </motion.div>
@@ -287,7 +287,7 @@ export default function About() {
     >
       {/* Background Ambient Effects */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/5 blur-[140px]" />
+        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500/5 blur-[140px]" />
 
         <motion.div
           animate={{
@@ -299,7 +299,7 @@ export default function About() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute left-1/4 top-1/4 h-72 w-72 rounded-full bg-cyan-500 blur-[120px]"
+          className="absolute left-1/4 top-1/4 h-72 w-72 rounded-full bg-red-500 blur-[120px]"
         />
 
         <motion.div
@@ -312,7 +312,7 @@ export default function About() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute bottom-1/4 right-1/4 h-72 w-72 rounded-full bg-purple-500 blur-[120px]"
+          className="absolute bottom-1/4 right-1/4 h-72 w-72 rounded-full bg-red-500 blur-[120px]"
         />
       </div>
 
@@ -336,7 +336,7 @@ export default function About() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.6 }}
-              className="absolute left-1/2 top-[10%] h-[28%] w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-cyan-400/30 to-cyan-400/60"
+              className="absolute left-1/2 top-[10%] h-[28%] w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-red-400/30 to-red-400/60"
             />
 
             {/* Middle Left Line */}
@@ -345,7 +345,7 @@ export default function About() {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.8 }}
-              className="absolute left-[24%] top-[45%] h-px w-[20%] origin-right bg-gradient-to-l from-cyan-400/60 via-cyan-400/20 to-transparent"
+              className="absolute left-[24%] top-[45%] h-px w-[20%] origin-right bg-gradient-to-l from-red-400/60 via-red-400/20 to-transparent"
             />
 
             {/* Middle Right Line */}
@@ -354,7 +354,7 @@ export default function About() {
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.9 }}
-              className="absolute right-[24%] top-[45%] h-px w-[20%] origin-left bg-gradient-to-r from-cyan-400/60 via-cyan-400/20 to-transparent"
+              className="absolute right-[24%] top-[45%] h-px w-[20%] origin-left bg-gradient-to-r from-red-400/60 via-red-400/20 to-transparent"
             />
 
             {/* Bottom Left Diagonal Line */}
@@ -363,7 +363,7 @@ export default function About() {
               whileInView={{ scaleY: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 1 }}
-              className="absolute left-[36%] top-[62%] h-[24%] w-px origin-top rotate-[32deg] bg-gradient-to-b from-purple-400/50 to-transparent"
+              className="absolute left-[36%] top-[62%] h-[24%] w-px origin-top rotate-[32deg] bg-gradient-to-b from-red-400/50 to-transparent"
             />
 
             {/* Bottom Right Diagonal Line */}
@@ -372,7 +372,7 @@ export default function About() {
               whileInView={{ scaleY: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 1.1 }}
-              className="absolute right-[36%] top-[62%] h-[24%] w-px origin-top -rotate-[32deg] bg-gradient-to-b from-blue-400/50 to-transparent"
+              className="absolute right-[36%] top-[62%] h-[24%] w-px origin-top -rotate-[32deg] bg-gradient-to-b from-red-400/50 to-transparent"
             />
 
             {/* Small moving particles */}
@@ -383,7 +383,7 @@ export default function About() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute left-1/2 top-[15%] h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.8)]"
+              className="absolute left-1/2 top-[15%] h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-red-400 shadow-[0_0_12px_rgba(34,211,238,0.8)]"
             />
 
             <motion.div
@@ -394,7 +394,7 @@ export default function About() {
                 ease: "easeInOut",
                 delay: 1,
               }}
-              className="absolute left-[30%] top-[45%] h-1.5 w-1.5 rounded-full bg-cyan-400"
+              className="absolute left-[30%] top-[45%] h-1.5 w-1.5 rounded-full bg-red-400"
             />
           </div>
 
@@ -420,7 +420,7 @@ export default function About() {
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className="absolute -inset-8 rounded-full border border-dashed border-cyan-400/20"
+              className="absolute -inset-8 rounded-full border border-dashed border-red-400/20"
             />
 
             <motion.div
@@ -433,11 +433,11 @@ export default function About() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute -inset-5 rounded-full bg-cyan-400/10 blur-xl"
+              className="absolute -inset-5 rounded-full bg-red-400/10 blur-xl"
             />
 
             {/* Core */}
-            <div className="relative flex h-40 w-40 flex-col items-center justify-center rounded-full border border-cyan-400/30 bg-white/95 shadow-2xl shadow-cyan-500/10 backdrop-blur-xl dark:bg-[#07101f]/95">
+            <div className="relative flex h-40 w-40 flex-col items-center justify-center rounded-full border border-red-400/30 bg-white/95 shadow-2xl shadow-red-500/10 backdrop-blur-xl dark:bg-[#07101f]/95">
               <motion.div
                 animate={{
                   rotate: [0, 360],
@@ -447,19 +447,19 @@ export default function About() {
                   repeat: Infinity,
                   ease: "linear",
                 }}
-                className="absolute inset-3 rounded-full border border-dashed border-cyan-400/20"
+                className="absolute inset-3 rounded-full border border-dashed border-red-400/20"
               />
 
               <Code2
                 size={34}
-                className="relative text-cyan-600 dark:text-cyan-300"
+                className="relative text-red-600 dark:text-red-300"
               />
 
               <span className="relative mt-2 text-lg font-black tracking-tight dark:text-white text-slate-900">
                 OSCode
               </span>
 
-              <span className="relative font-mono text-[9px] tracking-[0.25em] text-cyan-600 dark:text-cyan-400">
+              <span className="relative font-mono text-[9px] tracking-[0.25em] text-red-600 dark:text-red-400">
                 CIT BANGALORE
               </span>
             </div>
@@ -536,7 +536,7 @@ export default function About() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="relative mb-3 flex flex-col items-center justify-center overflow-hidden rounded-3xl border border-cyan-400/20 bg-white/80 p-8 text-center shadow-sm backdrop-blur-xl dark:bg-[#07101f]/80 sm:col-span-2"
+            className="relative mb-3 flex flex-col items-center justify-center overflow-hidden rounded-3xl border border-red-400/20 bg-white/80 p-8 text-center shadow-sm backdrop-blur-xl dark:bg-[#07101f]/80 sm:col-span-2"
           >
             <motion.div
               animate={{
@@ -548,13 +548,13 @@ export default function About() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute h-40 w-40 rounded-full bg-cyan-400 blur-3xl"
+              className="absolute h-40 w-40 rounded-full bg-red-400 blur-3xl"
             />
 
-            <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-50 dark:bg-cyan-500/10">
+            <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-red-400/30 bg-red-50 dark:bg-red-500/10">
               <Code2
                 size={30}
-                className="text-cyan-600 dark:text-cyan-300"
+                className="text-red-600 dark:text-red-300"
               />
             </div>
 
@@ -562,7 +562,7 @@ export default function About() {
               OSCode CIT
             </h3>
 
-            <p className="relative mt-1 font-mono text-[10px] tracking-[0.2em] text-cyan-600 dark:text-cyan-400">
+            <p className="relative mt-1 font-mono text-[10px] tracking-[0.2em] text-red-600 dark:text-red-400">
               BUILD • LEARN • COLLABORATE
             </p>
           </motion.div>

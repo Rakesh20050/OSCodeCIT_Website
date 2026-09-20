@@ -31,9 +31,7 @@ const navLinks = [
 
 const menuVariants = {
   hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.04, delayChildren: 0.04 },
-  },
+  visible: { transition: { staggerChildren: 0.04, delayChildren: 0.04 } },
 };
 
 const itemVariants = {
@@ -46,7 +44,6 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
-
   const isDark = theme === "dark";
 
   useEffect(() => {
@@ -56,15 +53,11 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location.pathname]);
+  useEffect(() => setIsOpen(false), [location.pathname]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
   return (
@@ -76,61 +69,63 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 z-40 bg-black/70 backdrop-blur-md md:hidden"
+            className="fixed inset-0 z-40 bg-black/80 backdrop-blur-md xl:hidden"
           />
         )}
       </AnimatePresence>
 
-      <header className="fixed z-50 w-full top-0">
+      <header className="fixed top-0 z-50 w-full px-3 sm:px-5">
         <div
-          className={`border-b px-4 sm:px-6 py-3 backdrop-blur-xl transition-all duration-300 ${
+          className={`mx-auto mt-3 max-w-[1500px] rounded-2xl border px-3 sm:px-4 py-3 backdrop-blur-2xl transition-all duration-300 ${
             scrolled
-              ? "dark:border-[#00A8FF]/30 border-slate-300 dark:bg-[#050505]/90 bg-white/90 shadow-md"
-              : "dark:border-[#00A8FF]/20 border-slate-200 dark:bg-[#0D0D0D]/70 bg-white/70 shadow-sm"
+              ? "border-red-500/35 bg-[#050505]/92 shadow-[0_14px_45px_rgba(0,0,0,.45),0_0_28px_rgba(239,68,68,.08)]"
+              : "border-white/10 bg-black/45 shadow-[0_10px_35px_rgba(0,0,0,.22)]"
           }`}
         >
-          <div className="flex items-center justify-between">
-            {/* Logo & Chapter Badge */}
-            <Link to="/" className="group flex items-center gap-2.5">
+          <div className="flex items-center justify-between gap-3">
+            <Link to="/" className="group flex shrink-0 items-center gap-2.5">
               <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-[#00A8FF]/40 opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 rounded-full bg-red-500/30 opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-100" />
                 <img
                   src="/images/logos/logo.svg"
                   alt="OSCode CIT Logo"
-                  className="relative h-8 w-auto transition-transform duration-300 group-hover:scale-105 sm:h-9"
+                  className="relative h-9 w-auto transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 sm:h-10"
                 />
               </div>
-              <span className="hidden items-center gap-1.5 rounded-full border border-[#00A8FF]/30 bg-[#00A8FF]/10 px-2.5 py-0.5 text-[11px] font-bold text-cyan-600 dark:text-[#00D2FF] sm:inline-flex">
-                <Terminal size={12} className="text-cyan-600 dark:text-[#00D2FF]" />
+              <span className="hidden items-center gap-1.5 rounded-full border border-red-500/35 bg-red-500/10 px-3 py-1 font-mono text-[11px] font-bold tracking-wide text-red-300 sm:inline-flex">
+                <Terminal size={12} className="transition-transform duration-500 group-hover:rotate-180" />
                 CIT Chapter
               </span>
             </Link>
 
-            {/* Desktop Nav Items */}
-            <nav className="hidden items-center gap-1 rounded-full border dark:border-white/10 border-slate-300 dark:bg-white/[0.04] bg-slate-100 p-1 xl:flex">
+            <nav className="hidden items-center gap-1.5 rounded-full border border-cyan-300/20 bg-[#020914]/80 p-1.5 xl:flex">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.name}
                   to={link.path}
                   end={link.path === "/"}
-                  className="relative rounded-full px-3.5 py-1.5 text-xs font-bold transition-colors duration-200"
+                  className="group relative rounded-full px-4.5 py-2.5 text-[14px] font-bold tracking-[0.01em] transition-all duration-300"
                 >
                   {({ isActive }) => (
                     <>
                       {isActive && (
                         <motion.span
                           layoutId="nav-active-pill"
-                          className="absolute inset-0 rounded-full bg-[#00A8FF] shadow-md shadow-[#00A8FF]/30"
+                          className="absolute inset-0 rounded-full bg-red-500 shadow-[0_0_24px_rgba(239,68,68,.28)]"
                           transition={{ type: "spring", stiffness: 400, damping: 32 }}
                         />
                       )}
+                      {!isActive && (
+                        <span className="absolute inset-0 rounded-full bg-red-500/0 transition-colors duration-300 group-hover:bg-red-500/10" />
+                      )}
                       <span
-                        className={`relative z-10 ${
+                        className={`relative z-10 flex items-center gap-2 transition-colors duration-300 ${
                           isActive
-                            ? "text-black font-bold"
-                            : "dark:text-slate-300 text-slate-700 hover:text-slate-950 dark:hover:text-white"
+                            ? "text-white"
+                            : "text-white/70 group-hover:text-red-300"
                         }`}
                       >
+                        <link.icon size={14} className={isActive ? "text-white" : "text-cyan-300/70 group-hover:text-cyan-200"} />
                         {link.name}
                       </span>
                     </>
@@ -139,21 +134,23 @@ const Navbar = () => {
               ))}
             </nav>
 
-            {/* Right Header Action Controls: Dark Toggle */}
             <div className="flex items-center gap-2">
+              {/* Thin red brightness/theme circle */}
               <button
                 onClick={toggleTheme}
-                className="flex h-9 w-9 items-center justify-center rounded-xl border dark:border-cyan-400/40 border-slate-300 dark:bg-cyan-500/10 bg-slate-100 text-slate-700 dark:text-slate-300 hover:border-cyan-500 transition active:scale-95 shadow-sm"
+                className="group relative flex h-10 w-10 items-center justify-center rounded-full border border-red-500/65 bg-black/35 text-red-300 shadow-[0_0_18px_rgba(239,68,68,.08)] transition-all duration-300 hover:border-red-400 hover:bg-red-500/10 hover:shadow-[0_0_28px_rgba(239,68,68,.22)] active:scale-90"
                 title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-                aria-label="Toggle Theme"
+                aria-label="Toggle brightness/theme"
               >
-                {isDark ? <Sun size={17} className="text-amber-400" /> : <Moon size={17} className="text-cyan-600" />}
+                <span className="absolute inset-1 rounded-full border border-red-500/15 transition-transform duration-500 group-hover:rotate-180" />
+                {isDark
+                  ? <Sun size={17} className="relative transition-transform duration-500 group-hover:rotate-90" />
+                  : <Moon size={17} className="relative transition-transform duration-500 group-hover:-rotate-12" />}
               </button>
 
-              {/* Mobile Hamburger Button */}
               <button
                 onClick={() => setIsOpen((prev) => !prev)}
-                className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border dark:border-[#00A8FF]/30 border-slate-300 dark:bg-white/[0.05] bg-slate-100 dark:text-white text-slate-900 transition hover:bg-slate-200 dark:hover:bg-white/10 active:scale-95 xl:hidden"
+                className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-red-500/35 bg-white/[0.04] text-white transition hover:border-red-400 hover:bg-red-500/10 active:scale-95 xl:hidden"
                 aria-label="Toggle Navigation"
                 aria-expanded={isOpen}
               >
@@ -173,78 +170,68 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -12, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -12, scale: 0.98 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="mt-2 mx-4 overflow-hidden rounded-2xl border dark:border-[#00A8FF]/30 border-slate-300 dark:bg-[#080e1e]/98 bg-white/98 shadow-2xl backdrop-blur-2xl xl:hidden max-h-[80vh] overflow-y-auto"
-            >
-              <div className="terminal-header !h-9 !px-4 border-b dark:border-white/10 border-slate-200 flex items-center justify-between">
-                <div className="terminal-dots flex gap-1.5">
-                  <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-green-500/80" />
-                </div>
-                <span className="font-mono text-[11px] text-slate-500">~/oscode-navigation</span>
-              </div>
-
-              <motion.div
-                variants={menuVariants}
-                initial="hidden"
-                animate="visible"
-                className="flex flex-col p-2"
-              >
-                {navLinks.map((link, index) => {
-                  const isActive =
-                    location.pathname === link.path ||
-                    (link.path !== "/" && location.pathname.startsWith(link.path));
-                  const Icon = link.icon;
-
-                  return (
-                    <motion.div key={link.name} variants={itemVariants}>
-                      <NavLink
-                        to={link.path}
-                        end={link.path === "/"}
-                        className={`group relative flex items-center gap-3.5 overflow-hidden rounded-xl px-4 py-3 transition-colors duration-200 ${
-                          isActive
-                            ? "bg-gradient-to-r from-[#00A8FF]/20 to-transparent"
-                            : "hover:bg-slate-100 dark:hover:bg-white/5"
-                        }`}
-                      >
-                        {isActive && (
-                          <span className="absolute left-0 top-1/2 h-6 w-[3px] -translate-y-1/2 rounded-full bg-[#00A8FF]" />
-                        )}
-
-                        <span className="font-mono text-[10px] text-slate-400">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-
-                        <Icon
-                          size={17}
-                          className={isActive ? "text-cyan-600 dark:text-[#00D2FF]" : "text-slate-500 group-hover:text-slate-900 dark:group-hover:text-slate-200"}
-                        />
-
-                        <span
-                          className={`text-sm font-bold ${
-                            isActive ? "text-cyan-600 dark:text-[#00D2FF]" : "text-slate-800 dark:text-slate-200"
-                          }`}
-                        >
-                          {link.name}
-                        </span>
-                      </NavLink>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </header>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -12, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -12, scale: 0.98 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed left-3 right-3 top-[76px] z-50 mx-auto max-w-[1440px] overflow-hidden rounded-2xl border border-red-500/30 bg-[#080808]/98 shadow-2xl backdrop-blur-2xl xl:hidden"
+          >
+            <div className="flex h-9 items-center justify-between border-b border-white/10 px-4">
+              <div className="flex gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/25" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+              </div>
+              <span className="font-mono text-[11px] text-white/40">~/oscode-navigation</span>
+            </div>
+
+            <motion.div
+              variants={menuVariants}
+              initial="hidden"
+              animate="visible"
+              className="flex max-h-[80vh] flex-col gap-1 overflow-y-auto p-2"
+            >
+              {navLinks.map((link, index) => {
+                const isActive =
+                  location.pathname === link.path ||
+                  (link.path !== "/" && location.pathname.startsWith(link.path));
+                const Icon = link.icon;
+
+                return (
+                  <motion.div key={link.name} variants={itemVariants}>
+                    <NavLink
+                      to={link.path}
+                      end={link.path === "/"}
+                      className={`group relative flex items-center gap-3.5 overflow-hidden rounded-xl px-4 py-3 transition-all duration-300 ${
+                        isActive ? "bg-red-500/15" : "hover:bg-red-500/10"
+                      }`}
+                    >
+                      {isActive && (
+                        <span className="absolute left-0 top-1/2 h-7 w-[3px] -translate-y-1/2 rounded-full bg-red-500 shadow-[0_0_14px_rgba(239,68,68,.8)]" />
+                      )}
+                      <span className="font-mono text-[10px] text-white/30">{String(index + 1).padStart(2, "0")}</span>
+                      <Icon
+                        size={18}
+                        className={`transition-transform duration-500 group-hover:rotate-12 ${
+                          isActive ? "text-red-400" : "text-white/50 group-hover:text-red-300"
+                        }`}
+                      />
+                      <span className={`text-sm font-bold ${isActive ? "text-red-300" : "text-white/80 group-hover:text-white"}`}>
+                        {link.name}
+                      </span>
+                    </NavLink>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

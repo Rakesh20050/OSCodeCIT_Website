@@ -6,7 +6,7 @@ import PrimaryButton from "../common/PrimaryButton";
 import EventCard from "../events/EventCard";
 import { motion, AnimatePresence } from "framer-motion";
 import events from "../../data/events";
-import { Marquee } from "../ui/marquee";
+import AlbumFrame from "../common/AlbumFrame";
 import {
   Calendar,
   MapPin,
@@ -58,15 +58,36 @@ const FeaturedEvents = () => {
           description="From workshops to hackathons, explore the events that shape the OSCode CIT community."
         />
 
-        <div className="mt-16 w-full overflow-hidden">
-          <Marquee pauseOnHover className="[--duration:40s] [--gap:3.5rem]">
+        <AlbumFrame
+          className="mt-16"
+          eyebrow="Featured Events"
+          title="Event Photo Albums"
+          description="Browse complete event albums without overlays or cropped cards. Click an album to flip it for the full event story."
+        >
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.06 }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.10 } },
+            }}
+            className="grid grid-cols-1 items-stretch gap-8 lg:gap-9 md:grid-cols-2 xl:grid-cols-3"
+          >
             {events.map((event) => (
-              <div key={event.id} className="w-87.5 sm:w-95 shrink-0">
+              <motion.div
+                key={event.id}
+                variants={{
+                  hidden: { opacity: 0, y: 25 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+                }}
+                className="min-w-0"
+              >
                 <EventCard event={event} onCardClick={() => handleOpenModal(event)} />
-              </div>
+              </motion.div>
             ))}
-          </Marquee>
-        </div>
+          </motion.div>
+        </AlbumFrame>
 
         <div className="mt-14 flex justify-center">
           <Link to="/events">
@@ -92,7 +113,7 @@ const FeaturedEvents = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.25 }}
-              className="relative max-h-[92vh] w-full max-w-5xl overflow-hidden rounded-3xl border dark:border-[#00A8FF]/30 border-slate-300 dark:bg-[#080e1e] bg-white p-6 sm:p-8 shadow-2xl z-10 flex flex-col dark:text-white text-slate-900"
+              className="relative max-h-[92vh] w-full max-w-5xl overflow-hidden rounded-3xl border dark:border-[#EF4444]/30 border-slate-300 dark:bg-[#080e1e] bg-white p-6 sm:p-8 shadow-2xl z-10 flex flex-col dark:text-white text-slate-900"
             >
               <button
                 onClick={handleCloseModal}
@@ -132,13 +153,13 @@ const FeaturedEvents = () => {
 
                 <div className="lg:col-span-7 flex flex-col justify-start space-y-5">
                   <div className="flex flex-wrap items-center gap-2.5">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/40 px-3 py-1 text-xs font-bold text-cyan-600 dark:text-cyan-300">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-red-500/10 border border-red-400/40 px-3 py-1 text-xs font-bold text-red-600 dark:text-red-300">
                       <Calendar size={13} />
                       {selectedEvent.date}
                     </span>
 
                     <span className="inline-flex items-center gap-1.5 rounded-full dark:bg-white/5 bg-slate-100 border dark:border-white/10 border-slate-200 px-3 py-1 text-xs dark:text-slate-300 text-slate-700">
-                      <MapPin size={13} className="text-cyan-600 dark:text-cyan-400" />
+                      <MapPin size={13} className="text-red-600 dark:text-red-400" />
                       {selectedEvent.venue ? selectedEvent.venue.split(",")[0] : selectedEvent.location}
                     </span>
                   </div>
@@ -150,7 +171,7 @@ const FeaturedEvents = () => {
                   <div className="space-y-4 pt-2 border-t dark:border-white/10 border-slate-200">
                     {selectedEvent.about && (
                       <div>
-                        <h3 className="text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-300 flex items-center gap-1.5">
+                        <h3 className="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-300 flex items-center gap-1.5">
                           <BookOpen size={14} />
                           About the Event
                         </h3>
@@ -162,7 +183,7 @@ const FeaturedEvents = () => {
 
                     {selectedEvent.participation && (
                       <div className="pt-2">
-                        <h3 className="text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-300 flex items-center gap-1.5">
+                        <h3 className="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-300 flex items-center gap-1.5">
                           <Users size={14} />
                           OSCode CIT Participation
                         </h3>

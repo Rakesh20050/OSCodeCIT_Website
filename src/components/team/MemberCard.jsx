@@ -1,70 +1,86 @@
+import { motion } from "framer-motion";
+import { RotateCw, Users } from "lucide-react";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import FlipCard from "../common/FlipCard";
 
 const MemberCard = ({ member }) => {
-  return (
-    <div className="group relative flex h-full flex-col items-center justify-between rounded-2xl border border-white/10 bg-linear-to-b from-[#111936]/80 via-[#0d142c]/85 to-[#090d1f]/95 p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2 hover:border-cyan-400/50 hover:shadow-[0_12px_35px_-8px_rgba(6,182,212,0.28)] text-center overflow-hidden">
-      
-      <div className="absolute inset-x-0 top-0 h-0.5 bg-linear-to-r from-cyan-400 via-indigo-500 to-purple-500 opacity-60 transition-opacity duration-300 group-hover:opacity-100" />
+  const socials = [
+    { href: member.github, icon: FaGithub, label: "GitHub" },
+    { href: member.linkedin, icon: FaLinkedin, label: "LinkedIn" },
+    { href: member.instagram, icon: FaInstagram, label: "Instagram" },
+  ].filter((item) => item.href);
 
-      <div className="pointer-events-none absolute -top-12 left-1/2 -translate-x-1/2 h-28 w-28 rounded-full bg-cyan-500/10 blur-2xl transition-all duration-300 group-hover:bg-purple-500/20 group-hover:scale-150" />
-
+  const front = (
+    <motion.div className="group relative flex h-full flex-col items-center justify-between overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#151517]/96 via-[#0d0d0f]/98 to-[#070708]/98 p-5 text-center shadow-[0_20px_50px_rgba(0,0,0,.28)]">
+      <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-80" />
+      <div className="pointer-events-none absolute -top-12 left-1/2 h-28 w-28 -translate-x-1/2 rounded-full bg-red-500/10 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:bg-red-500/20" />
       <div className="relative mt-2">
-        <div className="absolute -inset-1 rounded-full bg-linear-to-tr from-cyan-400 via-indigo-500 to-purple-500 opacity-30 blur-sm transition-all duration-300 group-hover:opacity-100 group-hover:blur-md" />
+        <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-red-500 via-white/30 to-red-800 opacity-35 blur-sm transition-all duration-500 group-hover:opacity-80 group-hover:blur-md" />
         <img
           src={member.image}
           alt={member.name}
-          className="relative h-24 w-24 rounded-full object-cover border-2 border-white/20 shadow-lg transition-transform duration-300 group-hover:scale-105 group-hover:border-cyan-300"
+          className="relative h-24 w-24 rounded-full border-2 border-white/15 object-cover shadow-lg transition-transform duration-500 group-hover:scale-105 group-hover:rotate-2 group-hover:border-red-300"
+          onError={(e) => { e.currentTarget.src = "/images/logos/logo.svg"; }}
         />
       </div>
-
-      <div className="mt-4 flex flex-1 flex-col justify-between w-full relative z-10">
+      <div className="relative z-10 mt-4 flex w-full flex-1 flex-col justify-between">
         <div>
-          <h3 className="text-base font-bold text-white tracking-tight transition group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-cyan-300 group-hover:to-purple-300">
-            {member.name}
-          </h3>
-          <span className="mt-1.5 inline-block rounded-full bg-white/5 border border-white/10 px-2.5 py-0.5 text-[11px] font-medium text-slate-300 shadow-sm">
-            {member.role}
-          </span>
+          <h3 className="text-base font-black tracking-tight text-white transition group-hover:text-red-300">{member.name}</h3>
+          <span className="mt-1.5 inline-block rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[11px] font-medium text-white/65">{member.role}</span>
+          {member.department && <p className="mt-2 font-mono text-[10px] uppercase tracking-wider text-red-300/70">{member.department}</p>}
         </div>
+        <div className="mt-5 flex items-center justify-center gap-2 border-t border-white/10 pt-3">
+          {socials.map(({ href, icon: Icon, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${member.name}'s ${label}`}
+              onClick={(e) => e.stopPropagation()}
+              className="group/icon flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/65 transition-all duration-300 hover:-translate-y-1 hover:rotate-6 hover:border-red-400/50 hover:bg-red-500/10 hover:text-red-300"
+            >
+              <Icon size={15} className="transition-transform duration-500 group-hover/icon:rotate-180" />
+            </a>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
 
-        <div className="mt-5 flex items-center justify-center gap-2 pt-3 border-t border-white/10">
-          {member.github && (
-            <a
-              href={member.github}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`${member.name}'s GitHub`}
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white transition hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/20 sm:h-8 sm:w-8"
-            >
-              <FaGithub size={15} />
-            </a>
-          )}
-          {member.linkedin && (
-            <a
-              href={member.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`${member.name}'s LinkedIn`}
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-300 transition hover:-translate-y-0.5 hover:border-cyan-400/50 hover:bg-cyan-500/10 hover:text-cyan-300 sm:h-8 sm:w-8"
-            >
-              <FaLinkedin size={15} />
-            </a>
-          )}
-          {member.instagram && (
-            <a
-              href={member.instagram}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`${member.name}'s Instagram`}
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-300 transition hover:-translate-y-0.5 hover:border-pink-400/50 hover:bg-pink-500/10 hover:text-pink-300 sm:h-8 sm:w-8"
-            >
-              <FaInstagram size={15} />
-            </a>
-          )}
+  const back = (
+    <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-red-500/45 bg-[radial-gradient(circle_at_top_right,rgba(239,68,68,.15),transparent_35%),linear-gradient(145deg,#171719,#070708)] p-5 text-white shadow-[0_24px_65px_rgba(0,0,0,.45)]">
+      <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-red-400 to-transparent" />
+      <div className="relative z-10 flex h-full flex-col">
+        <div className="flex items-center justify-between">
+          <span className="rounded-full border border-red-400/30 bg-red-500/10 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-red-300">Team Profile</span>
+          <RotateCw size={16} className="text-red-300 transition-transform duration-500 group-hover:rotate-180" />
         </div>
+        <div className="mt-6 flex items-center gap-3">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-red-400/25 bg-red-500/10 text-red-300">
+            <Users size={21} className="os-icon-rotate" />
+          </div>
+          <div>
+            <h3 className="text-xl font-black">{member.name}</h3>
+            <p className="text-xs text-red-300">{member.role}</p>
+          </div>
+        </div>
+        <div className="mt-6 space-y-3 text-xs text-white/65">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+            <span className="font-mono text-[10px] uppercase tracking-wider text-white/35">Department</span>
+            <p className="mt-1 font-bold text-white/85">{member.department || "OSCode CIT"}</p>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+            <span className="font-mono text-[10px] uppercase tracking-wider text-white/35">Role</span>
+            <p className="mt-1 font-bold text-white/85">{member.role}</p>
+          </div>
+        </div>
+        <p className="mt-auto pt-5 text-center text-[11px] text-white/35">Click the card again to flip back</p>
       </div>
     </div>
   );
+
+  return <FlipCard front={front} back={back} ariaLabel={`${member.name} team card`} />;
 };
 
 export default MemberCard;
