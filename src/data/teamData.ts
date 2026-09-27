@@ -7,6 +7,7 @@ export interface Person {
   skills?: string[];
   github?: string;
   linkedin?: string;
+  instagram?: string;
 }
 
 export interface TeamMember {
@@ -15,6 +16,7 @@ export interface TeamMember {
   image: string;
   github?: string;
   linkedin?: string;
+  instagram?: string;
 }
 
 export interface Department {
@@ -146,13 +148,23 @@ export const departments: Department[] = [
     ----------------------------- */
 
     members: [
+       {
+        name: "Abhesh Mandal",
+        role: "Developer",
+        image:
+          "/images/team/members/technical-4.jpg",
+           github: "https://github.com/tdeflash12",
+  linkedin: "https://www.linkedin.com/in/abhesh-mandal-7a576a2b1",
+  instagram:"https://www.instagram.com/abheshmandal12/",
+      },
       {
         name: "Rakesh Kumar Shah",
         role: "Developer",
         image:
           "/images/team/members/technical-1.jpeg",
         github: "https://github.com/Rakesh20050",
-  linkedin: "https://www.linkedin.com/in/rakesh-kumar-shah",
+  linkedin: "https://www.instagram.com/rakeshshah3358",
+  instagram:"https://www.instagram.com/rakeshshah3358"
       },
 
       {
@@ -160,6 +172,9 @@ export const departments: Department[] = [
         role: "Developer",
         image:
           "/images/team/members/technical-2.jpg",
+              
+       linkedin: "https://www.linkedin.com/in/deeprajkumargupta/",
+       instagram:"https://www.instagram.com/deepraj_.05/",
       },
 
       {
@@ -167,30 +182,37 @@ export const departments: Department[] = [
         role: "Developer",
         image:
           "/images/team/members/technical-3.jpeg",
+              github: "https://github.com/Tejas-Coder-07",
+  linkedin: "https://www.linkedin.com/in/tejas-s-5237ba32b",
+  instagram:"https://www.instagram.com/tejas_verse_27",
       },
-      {
-        name: "Abhesh Mandal",
-        role: "Developer",
-        image:
-          "/images/team/members/technical-4.jpg",
-      },
+     
       {
         name: "Deeksha SK",
         role: "Developer",
         image:
           "/images/team/members/technical-5.jpeg",
+              github: "https://github.com/deekshask30-dot",
+  linkedin: "https://www.linkedin.com/in/deeksha-sk-029a7138a",
+  instagram:"https://www.instagram.com/deeksha.sk_",
       },
       {
         name: "Anshika Singh",
         role: "Developer",
         image:
           "/images/team/members/technical-6.jpeg",
+            github: "https://github.com/anshika27official",
+          linkedin: "https://www.linkedin.com/in/anshika-singh-14b74638b",
+          instagram:"https://www.instagram.com/bookmaniax"
       },
       {
         name: "Sharath",
         role: "Developer",
         image:
           "/images/team/members/technical-7.jpeg",
+             github: "https://github.com/sharathswaroop-dev",
+          linkedin: "http://www.linkedin.com/in/sharath-swaroop-m-179a9a379",
+          instagram:"https://www.instagram.com/sharathswaroop_m?stkn=dmpmcWIxNm95ejZn"
       },
     ],
   },
@@ -229,8 +251,9 @@ export const departments: Department[] = [
         "Experimentation",
       ],
 
-      github: "https://share.google/iHpqp3PHbcrfvGtsr",
+      github: "https://github.com/ZENON-28",
       linkedin: "https://www.linkedin.com/in/s-nishaanth",
+      instagram:"https://www.instagram.com/zen0n_28"
     },
 
     /* -----------------------------
@@ -246,6 +269,9 @@ export const departments: Department[] = [
         role: "R&D Lead",
         image:
           "/images/team/rnd1-lead.jpg",
+        github: "https://github.com/punithsuresh18",
+      linkedin: "https://www.linkedin.com/in/punith-s-630339392",
+      instagram:"https://www.instagram.com/punithsuresh18/"
       },
 
       {
@@ -253,6 +279,9 @@ export const departments: Department[] = [
         role: "R&D Member",
         image:
           "/images/team/members/rd-2.jpg",
+         github: "https://github.com/Gnani66",
+      linkedin: "https://in.linkedin.com/in/gnanesh-mv",
+      instagram:"https://www.instagram.com/gnanesh_.66"
       },
 
       {
@@ -260,6 +289,9 @@ export const departments: Department[] = [
         role: "R&D  Member",
         image:
           "/images/team/members/rd-3.jpg",
+         github: "https://github.com/rzoshan46-del",
+      linkedin: "https://www.linkedin.com/in/roshan-zameer-652757381",
+      instagram:"https://www.instagram.com/_.roshannnnn"
       },
     ],
   },
@@ -307,27 +339,35 @@ export const departments: Department[] = [
        Punith S is included here as
        another R&D team member.
     ----------------------------- */
-
-    members: [
+members: [
       {
         name: "Punith S",
-        role: "R&D Member",
+        role: "R&D Lead",
         image:
           "/images/team/rnd1-lead.jpg",
+        github: "https://github.com/punithsuresh18",
+      linkedin: "https://www.linkedin.com/in/punith-s-630339392",
+      instagram:"https://www.instagram.com/punithsuresh18/"
       },
 
       {
-        name: "R&D Member 2",
-        role: "Researcher",
+        name: "Gnanesh M V",
+        role: "R&D Member",
         image:
           "/images/team/members/rd-2.jpg",
+         github: "https://github.com/Gnani66",
+      linkedin: "https://in.linkedin.com/in/gnanesh-mv",
+      instagram:"https://www.instagram.com/gnanesh_.66"
       },
 
       {
-        name: "R&D Member 3",
-        role: "AI/ML Member",
+        name: "Roshan Zameer Y A",
+        role: "R&D  Member",
         image:
           "/images/team/members/rd-3.jpg",
+         github: "https://github.com/rzoshan46-del",
+      linkedin: "https://www.linkedin.com/in/roshan-zameer-652757381",
+      instagram:"https://www.instagram.com/_.roshannnnn"
       },
     ],
   },
@@ -446,6 +486,9 @@ export const departments: Department[] = [
         role: "Media Member",
         image:
           "/images/team/members/social-1.jpg",
+            github: "https://github.com/",
+      linkedin: "https://www.linkedin.com/",
+      instagram:"https://www.instagram.com/saurab14311/"
       },
 
       {
@@ -453,6 +496,9 @@ export const departments: Department[] = [
         role: "Media Member",
         image:
           "/images/team/members/social-2.jpg",
+            github: "https://github.com/",
+      linkedin: "https://www.linkedin.com/in/siddarth-m-d-067560382",
+      instagram:"https://www.instagram.com/insomaniacx_md_007"
       },
 
       {
@@ -460,6 +506,9 @@ export const departments: Department[] = [
         role: "Media Member",
         image:
           "/images/team/members/social-3.jpg",
+            github: "https://github.com/",
+      linkedin: "https://www.linkedin.com/in/anubhab-ray-058126318/",
+      instagram:"https://www.instagram.com/_anubhabray"
       },
     ],
   },

@@ -184,7 +184,7 @@
   margin-bottom: 12px;
   color: rgba(0, 198, 255, 0.72);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 40px;
+  font-size: clamp(12px, 2vw, 40px);
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -194,7 +194,7 @@
   margin: 0;
   color: #ffffff;
   font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(72px, 4vw, 102px);
+  font-size: clamp(36px, 4vw, 102px);
   line-height: 1.05;
   letter-spacing: -0.03em;
 }
@@ -204,7 +204,7 @@
   margin-top: 8px;
   color: rgba(255, 255, 255, 0.45);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 31px;
+  font-size: clamp(14px, 1.5vw, 31px);
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -222,7 +222,7 @@
   margin: 0 0 8px;
   color: rgba(255, 255, 255, 0.85);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 33px;
+  font-size: clamp(18px, 1.6vw, 33px);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -232,7 +232,7 @@
   margin: 0;
   color: rgba(255, 255, 255, 0.55);
   font-family: "Inter", sans-serif;
-  font-size: 35px;
+  font-size: clamp(15px, 1.5vw, 35px);
   line-height: 1.7;
 }
 
@@ -256,6 +256,7 @@
 
 .department-lead-socials {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   margin-top: 28px;
 }
@@ -264,10 +265,12 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  min-width: 0;
+  padding: 8px 10px;
   color: rgba(0, 198, 255, 0.85);
   text-decoration: none;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 20px;
+  font-size: clamp(12px, 1vw, 20px);
   font-weight: 600;
   letter-spacing: 0.1em;
   transition: opacity 0.3s ease;
@@ -392,8 +395,10 @@
 }
 
 .member-image {
-  width: 700px;
-  height: 860px;
+  width: 100%;
+  max-width: 700px;
+  aspect-ratio: 7 / 8.6;
+  height: auto;
   overflow: hidden;
   background: #020711;
   margin-bottom: 16px;
@@ -407,8 +412,14 @@
 
 .member-info {
   display: flex;
+  min-width: 0;
   justify-content: space-between;
   align-items: flex-end;
+  gap: 12px;
+}
+
+.member-info > div:first-child {
+  min-width: 0;
 }
 
 .member-info span {
@@ -426,15 +437,26 @@
   margin: 0;
   color: #ffffff;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 46px;
+  font-size: clamp(20px, 2vw, 46px);
+  overflow-wrap: anywhere;
 }
 
 .member-socials {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 8px;
 }
 
 .member-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
   color: rgba(255, 255, 255, 0.5);
   transition: color 0.3s ease;
 }
@@ -529,6 +551,11 @@
 }
 
 @media (max-width: 600px) {
+  .department-page {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
   .department-members-grid {
     grid-template-columns: 1fr;
   }
@@ -541,5 +568,26 @@
 
   .members-count {
     align-items: flex-start;
+  }
+
+  .department-lead-socials {
+    gap: 8px;
+  }
+
+  .department-lead-socials a {
+    flex: 1 1 140px;
+    justify-content: center;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+  }
+
+  .member-info {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .member-socials {
+    justify-content: flex-start;
   }
 }

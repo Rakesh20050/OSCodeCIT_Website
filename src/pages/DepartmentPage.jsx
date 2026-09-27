@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 import BinaryBackground from "../components/BinaryBackground";
 import DepartmentLeadCard from "../components/DepartmentLeadCard";
@@ -180,7 +181,8 @@ export default function DepartmentPage() {
           {/* Social links */}
 
           {(currentDepartment.lead.github ||
-            currentDepartment.lead.linkedin) && (
+            currentDepartment.lead.linkedin ||
+            currentDepartment.lead.instagram) && (
             <div className="department-lead-socials">
 
               {currentDepartment.lead.github && (
@@ -188,7 +190,9 @@ export default function DepartmentPage() {
                   href={currentDepartment.lead.github}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`${currentDepartment.lead.name} GitHub`}
                 >
+                  <FaGithub size={20} aria-hidden="true" />
                   <span>GITHUB</span>
                   <ArrowUpRight size={16} />
                 </a>
@@ -199,8 +203,23 @@ export default function DepartmentPage() {
                   href={currentDepartment.lead.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`${currentDepartment.lead.name} LinkedIn`}
                 >
+                  <FaLinkedin size={20} aria-hidden="true" />
                   <span>LINKEDIN</span>
+                  <ArrowUpRight size={16} />
+                </a>
+              )}
+
+              {currentDepartment.lead.instagram && (
+                <a
+                  href={currentDepartment.lead.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${currentDepartment.lead.name} Instagram`}
+                >
+                  <FaInstagram size={20} aria-hidden="true" />
+                  <span>INSTAGRAM</span>
                   <ArrowUpRight size={16} />
                 </a>
               )}
@@ -325,7 +344,8 @@ export default function DepartmentPage() {
                   {/* Social links */}
 
                   {(member.github ||
-                    member.linkedin) && (
+                    member.linkedin ||
+                    member.instagram) && (
                     <div className="member-socials">
 
                       {member.github && (
@@ -335,9 +355,7 @@ export default function DepartmentPage() {
                           rel="noopener noreferrer"
                           aria-label={`${member.name} GitHub`}
                         >
-                          <ArrowUpRight
-                            size={15}
-                          />
+                          <FaGithub size={18} aria-hidden="true" />
                         </a>
                       )}
 
@@ -348,9 +366,18 @@ export default function DepartmentPage() {
                           rel="noopener noreferrer"
                           aria-label={`${member.name} LinkedIn`}
                         >
-                          <ArrowUpRight
-                            size={15}
-                          />
+                          <FaLinkedin size={18} aria-hidden="true" />
+                        </a>
+                      )}
+
+                      {member.instagram && (
+                        <a
+                          href={member.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${member.name} Instagram`}
+                        >
+                          <FaInstagram size={18} aria-hidden="true" />
                         </a>
                       )}
 
