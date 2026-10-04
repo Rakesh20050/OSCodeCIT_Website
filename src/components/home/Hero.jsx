@@ -11,19 +11,17 @@ import {
 
 import EventShuffleCarousel from "./EventShuffleCarousel";
 
-import team from "../../data/teamData";
+import { organizer, leadership, departments } from "../../data/teamData.ts";
 import event from "../../data/events";
 import { projects } from "../../data/projects";
 
 export default function Hero() {
   return (
     <section className="relative min-h-[92vh] overflow-hidden bg-[#050505] pt-28 pb-16">
-
       {/* =========================================================
           VIDEO BACKGROUND
       ========================================================= */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-
         <video
           autoPlay
           muted
@@ -39,10 +37,7 @@ export default function Hero() {
             object-center
           "
         >
-          <source
-            src="/videos/hero-background.MP4"
-            type="video/mp4"
-          />
+          <source src="/videos/hero-background.MP4" type="video/mp4" />
         </video>
 
         {/* Dark readability layer */}
@@ -77,7 +72,6 @@ export default function Hero() {
           "
         />
       </div>
-
 
       {/* =========================================================
           AMBIENT GLOW
@@ -130,15 +124,11 @@ export default function Hero() {
         "
       />
 
-
       {/* =========================================================
           MAIN CONTAINER
       ========================================================= */}
       <div className="container relative z-10 mx-auto px-4 sm:px-6">
-
         <div className="grid items-center gap-10 lg:grid-cols-12 xl:gap-8">
-
-
           {/* =====================================================
               LEFT SIDE
           ===================================================== */}
@@ -157,7 +147,6 @@ export default function Hero() {
             }}
             className="relative z-20 lg:col-span-6"
           >
-
             {/* =================================================
                 BADGE
             ================================================= */}
@@ -203,9 +192,7 @@ export default function Hero() {
 
               <span>OSCODE CIT CHAPTER</span>
 
-              <span className="text-red-500">
-                •
-              </span>
+              <span className="text-red-500">•</span>
 
               <span>2026</span>
 
@@ -220,7 +207,6 @@ export default function Hero() {
                 "
               />
             </motion.div>
-
 
             {/* =================================================
                 HEADING
@@ -248,17 +234,12 @@ export default function Hero() {
                 xl:text-[4.6rem]
               "
             >
-              <span className="block text-white">
-                Open Source.
-              </span>
+              <span className="block text-white">Open Source.</span>
 
               <span
                 className="
                   block
-                  bg-gradient-to-r
-                  from-white
-                  via-red-400
-                  to-red-600
+                  text-white
                   bg-clip-text
                   text-transparent
                 "
@@ -269,18 +250,13 @@ export default function Hero() {
               <span
                 className="
                   block
-                  bg-gradient-to-r
-                  from-white
-                  via-slate-100
-                  to-red-200
+                  text-white
                   bg-clip-text
-                  text-transparent
                 "
               >
                 Zero Boundaries.
               </span>
             </motion.h1>
-
 
             {/* =================================================
                 DESCRIPTION
@@ -308,12 +284,11 @@ export default function Hero() {
               "
             >
               Build. Collaborate. Innovate.
-
               <span className="font-semibold text-red-300">
-                {" "}Turning ideas into impactful open-source projects.
+                {" "}
+                Turning ideas into impactful open-source projects.
               </span>
             </motion.p>
-
 
             {/* =================================================
                 BUTTONS
@@ -339,7 +314,6 @@ export default function Hero() {
                 gap-3
               "
             >
-
               {/* Projects */}
               <Link
                 to="/projects"
@@ -387,14 +361,9 @@ export default function Hero() {
                   "
                 />
 
-                <FolderGit2
-                  size={17}
-                  className="relative"
-                />
+                <FolderGit2 size={17} className="relative" />
 
-                <span className="relative">
-                  Explore Projects
-                </span>
+                <span className="relative">Explore Projects</span>
 
                 <ArrowRight
                   size={17}
@@ -406,7 +375,6 @@ export default function Hero() {
                   "
                 />
               </Link>
-
 
               {/* Team */}
               <Link
@@ -444,11 +412,8 @@ export default function Hero() {
                   "
                 />
 
-                <span>
-                  Meet Team
-                </span>
+                <span>Meet Team</span>
               </Link>
-
 
               {/* Events */}
               <Link
@@ -479,13 +444,9 @@ export default function Hero() {
               >
                 <CalendarDays size={16} />
 
-                <span>
-                  View Events
-                </span>
+                <span>View Events</span>
               </Link>
-
             </motion.div>
-
 
             {/* =================================================
                 STATS
@@ -500,7 +461,6 @@ export default function Hero() {
                 gap-3
               "
             >
-
               {/* =================================================
                   EVENTS HOSTED
                   Transparent - video fully visible
@@ -550,11 +510,8 @@ export default function Hero() {
                   {event.length - 1}+
                 </div>
 
-                <div className="mt-1 text-xs text-slate-400">
-                  Events Hosted
-                </div>
+                <div className="mt-1 text-xs text-slate-400">Events Hosted</div>
               </motion.div>
-
 
               {/* =================================================
                   CLUB MEMBERS
@@ -592,24 +549,18 @@ export default function Hero() {
 
                 <div
                   className="
-                    bg-gradient-to-r
-                    from-red-300
-                    to-pink-400
+                    text-white
                     bg-clip-text
                     font-mono
                     text-2xl
                     font-black
-                    text-transparent
                   "
                 >
                   {20}+
                 </div>
 
-                <div className="mt-1 text-xs text-slate-400">
-                  Club Members
-                </div>
+                <div className="mt-1 text-xs text-slate-400">Club Members</div>
               </motion.div>
-
 
               {/* =================================================
                   MAJOR PROJECTS
@@ -647,9 +598,7 @@ export default function Hero() {
 
                 <div
                   className="
-                    bg-gradient-to-r
-                    from-red-300
-                    to-red-400
+                    text-white
                     bg-clip-text
                     font-mono
                     text-2xl
@@ -664,14 +613,10 @@ export default function Hero() {
                   Major Projects
                 </div>
               </motion.div>
-
             </div>
-
           </motion.div>
-
         </div>
       </div>
-
 
       {/* =========================================================
           BOTTOM LINE
@@ -690,7 +635,9 @@ export default function Hero() {
           to-transparent
         "
       />
-
     </section>
   );
 }
+
+                            
+                          
