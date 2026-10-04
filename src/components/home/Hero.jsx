@@ -11,7 +11,7 @@ import {
 
 import EventShuffleCarousel from "./EventShuffleCarousel";
 
-import { organizer, leadership, departments } from "../../data/teamData.ts";
+import { team, departments } from "../../data/teamData.ts";
 import event from "../../data/events";
 import { projects } from "../../data/projects";
 
@@ -556,7 +556,7 @@ export default function Hero() {
                     font-black
                   "
                 >
-                  {20}+
+                  {departments.reduce((total, department)=> total+=department.members.length,0)}+
                 </div>
 
                 <div className="mt-1 text-xs text-slate-400">Club Members</div>
