@@ -11,7 +11,7 @@ import {
 
 import EventShuffleCarousel from "./EventShuffleCarousel";
 
-import { team, departments } from "../../data/teamData.ts";
+import { departments } from "../../data/teamData.ts";
 import event from "../../data/events";
 import { projects } from "../../data/projects";
 
