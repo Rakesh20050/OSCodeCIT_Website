@@ -33,7 +33,7 @@ export default function Hero() {
             inset-0
             h-full
             w-full
-            object-cover
+            object-fill
             object-center
           "
         >
